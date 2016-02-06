@@ -1,0 +1,40 @@
+<div id="form-content" class="modal-container">
+    <div class="modal-header">
+        <a class="close" ng-click='closeModal()'>×</a>
+        <h2> Create new Geolocation campaign </h2>
+    </div>
+    <div class="modal-body">
+        <ui-gmap-google-map ng-if="showMap" refresh="true" center='map.center' zoom='map.zoom' events='map.events'>
+            <ui-gmap-markers models='map.markers' coords="'self'" options="'options'"></ui-gmap-markers>
+            <ui-gmap-marker coords="map.clickedMarker" idKey="'self.id'" options="map.clickedMarker.options"></ui-gmap-marker>
+        </ui-gmap-google-map>
+         <div class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Touch the map to place your Location
+          </div>
+        <ul class="list-group" ng-repeat="item in map.markers">
+            <li class="list-group-item">
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Location: </span>
+                  <input type="text" class="form-control" ng-value="item.name" aria-describedby="basic-addon1" disabled>
+                    <span class="input-group-addon"><a class="close" ng-click='deleteMarker(item.id)'>×</a></span>
+                </div>
+            </li>
+        </ul>
+        <form class="form-horizontal" name="form" role="form">
+             <div class="form-group">
+                <label for="CampaignName">Campaign Name</label>
+                <input type="text" id="campaignName" class="form-control" ng-model="campaignName" placeholder="Campaign Name">
+             </div>
+             <div ng-if="map.clickedMarker.id !== undefined" class="form-group">
+                <label for="locationName">Location Title</label>
+                <input type="text" id="locationName" class="form-control" ng-model="map.clickedMarker.name" placeholder="Location Title">
+             </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-info" ng-click="addMark()" id="submit"> Add Location</button>
+        <button class="btn btn-success" ng-click="save()" id="submit"> Save</button>
+    </div>
+</div>

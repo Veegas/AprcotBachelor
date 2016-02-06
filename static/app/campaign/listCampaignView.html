@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="row">
+      <div class="col-lg-4" ng-repeat="campaign in campaigns track by campaign.id">
+         <h1> {{ campaign.application.name }} </h2>
+         <h2>{{ campaign.settings.heading}}</h2>
+         <p>
+            <button class="btn btn-danger" ng-click="deleteCampaign(campaign.id)" role="button">Delete</button>
+            <button class="btn btn-primary" ng-click="editCampaign(campaign.id, campaign.application)" role="button">Edit</button>
+            <button class="btn btn-warning" ng-click="" role="button">
+              <a ui-sref="index.analytics({ campaignId: campaign.id })">Analytics</a>
+            </button>
+            <button class="btn btn-success" ng-click="previewCampaign(campaign.id, campaign.application)" role="button">Preview</button>
+            <button class="btn btn-success" ng-click="showCampaignResults(campaign.id)" role="button">
+              <a ui-sref="index.results({ campaignId: campaign.id})">Results</a></button>
+         </p>
+       </div>
+  </div>
+</div>

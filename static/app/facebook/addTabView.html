@@ -1,0 +1,55 @@
+<div id="form-content" class="modal-container">
+    <div class="modal-header">
+        <a class="close" ng-click='closeModal()'>×</a>
+        <h3>Campaign Settings</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="form" role="form">
+             <div class="form-group">
+                <label for="pageSelect">Facebook Page:</label>
+                <select id="pageSelect" class="form-control" ng-change="canAddPageTab()" ng-options="page.name for page in pages track by page.id" ng-model="tab.page">
+                </select>
+             </div>
+             <div ng-if='valid' class="form-group">
+                <label for="tabName">Tab name:</label>
+                <input type="text" id="tabName" class="form-control" ng-model="tab.name" placeholder="Name">
+             </div>
+             <div ng-if='valid' class="form-group">
+                <label for="tabName">Start date:</label>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="startDate" ng-model="campaign.startDate">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker ng-model="campaign.startDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }">
+                        </datetimepicker>
+                    </ul>
+                </div>             </div>
+             <div ng-if='valid' class="form-group">
+                <label for="tabName">End date:</label>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="endDate" ng-model="campaign.endDate">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker ng-model="campaign.endDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }">
+                        </datetimepicker>
+                    </ul>
+                </div>
+             </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-disabled='!valid' ng-click="selectAprApp()" id="submit"> Create </button>
+    </div>
+</div>

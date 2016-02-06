@@ -1,0 +1,123 @@
+<div id="form-content" class="modal-container">
+    <div class="modal-header">
+        <a class="close" ng-click='closeModal()'>×</a>
+        <h3 class="modal-title">Create Quiz</h3>
+    </div>
+
+    <div class="modal-body">
+        <form name="quizForm" novalidate>
+            <div class="form-group" ng-class="{'has-error': quizForm.campaignName.$touched && quizForm.campaignName.$invalid}">
+                <label for="CampaignName">Campaign Name</label>
+                <input type="text" name="campaignName" class="form-control" ng-model="campaignName" placeholder="Campaign Name" required ng-maxlength="64">
+                <div class="help-block" ng-messages="quizForm.campaignName.$error" ng-if="quizForm.campaignName.$touched">
+                    <p ng-message="required">This field is required</p>
+                    <p ng-message="maxlength">This field is too long</p>
+                </div>
+             </div>
+
+            <div class="form-group" ng-class="{'has-error': quizForm.quizTitle.$touched && quizForm.quizTitle.$invalid}">
+                <label for="quizTitle" >Quiz Title</label>
+                <input type="text" name="quizTitle" class="form-control" ng-model="quiz.title" placeholder="Quiz Title" required ng-maxlength="64">
+                <div class="help-block" ng-messages="quizForm.quizTitle.$error" ng-if="quizForm.quizTitle.$touched">
+                    <p ng-message="required">This field is required</p>
+                    <p ng-message="maxlength">This field is too long</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': quizForm.quizStylesheet.$touched && quizForm.quizStylesheet.$invalid}">
+                <label for="quizStylesheet" >Stylesheet</label>
+                <input type="text" name="quizStylesheet" class="form-control" ng-model="quizStylesheet" placeholder="Quiz Stylesheet" required ng-maxlength="64">
+                <div class="help-block" ng-messages="quizForm.quizStylesheet.$error" ng-if="quizForm.quizStylesheet.$touched">
+                    <p ng-message="required">This field is required</p>
+                    <p ng-message="maxlength">This field is too long</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': quizForm.questionTitle.$touched && quizForm.questionTitle.$invalid}">
+                <label for="questionTitle">Question Title</label>
+                <input type="text" name="questionTitle" class="form-control" ng-model="questionTitle" placeholder="Question Title" required ng-maxlength="64">
+
+                <div class="help-block" ng-messages="quizForm.questionTitle.$error" ng-if="quizForm.questionTitle.$touched">
+                    <p ng-message="required">This field is required</p>
+                    <p ng-message="maxlength">This field is too long</p>
+                </div>
+
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': quizForm.questionType.$touched && quizForm.questionType.$invalid}">
+                <label for= "questionType"> Question Type</label>
+                <select name="quizType" ng-model="questionType" placeholder="Quiz Type" required>
+                    <option value="">---Please select---</option>
+                    <option value="T/F">T/F</option>
+                    <option value="MCQ">MCQ</option>
+                </select>
+                <div class="help-block" ng-messages="quizForm.questionType.$error" ng-if="quizForm.questionType.$touched">
+                    <p ng-message="required">This field is required</p>
+                </div>
+            </div>
+
+            <!-- Answer Form -->
+            <ng-form name="answerForm">
+                <div class="form-group" class="answers-block" ng-show="questionType == 'MCQ'" data-ng-repeat="answer in answers">
+                    <div class="form-group" ng-class="{'has-error': quizForm.answerForm.answer.title.$touched && quizForm.answerForm.answer.title.$invalid}">
+                        <label for="answer.title">Answer</label>
+                        <input type="text" name="answer.title" ng-model="answer.title" placeholder="Enter Answer" required ng-maxlength="64">
+                        <div class="help-block" ng-messages="quizForm.answerForm.answer.title.$error" ng-if="quizForm.answerForm.answer.title.$touched">
+                            <p ng-message="required">This field is required</p>
+                            <p ng-message="maxlength">This field is too long</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-error': quizForm.answerForm.answer.score.$touched && quizForm.answerForm.answer.score.$invalid}">
+                        <label for="answer.score">Score </label>
+                        <input type="number" name="answer.score" ng-model="answer.score" placeholder="Enter Score" required ng-maxlength="1">
+                        <div class="help-block" ng-messages="quizForm.answerForm.answer.score.$error" ng-if="quizForm.answerForm.answer.score.$touched">
+                            <p ng-message="required">This field is required</p>
+                            <p ng-message="maxlength">Only one score per answer</p>
+                        </div>
+                    </div>
+
+
+                    <button class="remove" ng-show="$last" ng-click="removeAnswer()">-</button>
+                </div>
+
+                </div>
+                <button class="btn btn-info" class="addfields" ng-click="addAnswer()" ng-show="questionType == 'MCQ'">
+                  Add another answer
+                </button>  <br/> <br/>
+                <div>
+                    {{ answers }}
+                </div>
+
+                <div class="form-group" ng-show="questionType == 'T/F'">
+                    <label for="TrueFalseCorrectAnswer">Correct Answer</label><br/>
+
+
+                    <input type="radio" name="True" value="True" ng-model="questions.answers" ng-change="checkTrueFalse('True')">
+                    <label for="True"> True </label>
+                    <br/>
+
+                    <input type="radio" name="False" value="False" ng-model="questions.answers" ng-change="checkTrueFalse('False')">
+                    <label for="False"> False</label>
+                </div>
+            </ng-form>
+        <!--Answer Form ends-->
+           <br/> <br/>
+            <ul ng-repeat="item in quiz.questions ">
+                <li>{{ item.question }}
+                    <a class="close" ng-click='deleteQuestion(item.id)'>x</a>
+                </li>
+            </ul>
+
+        <div class="help-block">{{ errorAnswers }}</div>
+
+    <div class="modal-footer">
+        <button class="btn btn-info" ng-click="addQuestion()" id="submitAdd" ng-disabled="quizForm.$invalid && answerForm.$invalid && submitAddValid"> Add Question</button>
+        <button class="btn btn-info" ng-click="save()" id="submit" ng-disabled="quizForm.$invalid && quizForm.answerForm.$invalid && submitValid "> Save</button>
+    </div>
+
+</div>
+    </form>
+</div>
+
+</div>

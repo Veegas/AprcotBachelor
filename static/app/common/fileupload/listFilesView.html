@@ -1,0 +1,18 @@
+<table>
+    <tr>
+        <td>Files</td>
+    </tr>
+    <tr>
+        <td>
+            <ul ng-repeat="file in files">
+                <li>
+                    {{ file.original_name }}
+
+                    <img ngf-src="file.uploaded_file" ngf-thumbnail="file.uploaded_file" ngf-size="{width: 80, height: 80, quality: 0.9}">
+                    <a class="close" ng-click='deleteFile(file.pk)'>x</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<button class="btn btn-info" ng-click="addFiles()"> Add</button>

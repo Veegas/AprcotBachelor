@@ -1,0 +1,31 @@
+<div id="form-content" class="modal-container">
+    <div class="modal-header">   
+        <a class="close" ng-click='closeModal()'>×</a>
+        <h3 class="modal-title">File Upload</h3>
+    </div>
+
+<div class="modal-body">
+    <form name="fileUpload">
+        <h4>Upload on file select maximum size 1MB</h4>
+        <button type="file" ngf-select="!!uploadFiles($file, $invalidFiles)"
+                  accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+              Select File
+        </button>
+        <br><br>
+          <h4> File: </h4>
+          <div style="font:smaller">
+              {{file.name}}  {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+          <span class="progress" ng-show="progress >= 0">
+              <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+          </span>
+          </div>     
+          <img ngf-src="file" ngf-thumbnail="file" ngf-size="{width: 80, height: 80, quality: 0.9}">
+
+          {{errorMsg}}
+
+    </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-info" ng-click="closeModal()">Close</button>
+</div>

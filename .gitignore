@@ -1,0 +1,32 @@
+#Node modules
+*node_modules/
+*bower_components/
+#Local requirements
+
+requirements.local
+requirements.txt
+
+#Vendors
+*libs
+static/vendors/
+
+static/debug_toolbar/
+static_root/
+
+#Media
+media/*
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#Apps
+static/app/application/contactus
+static/app/application/quiz
+static/app/application/statichtml

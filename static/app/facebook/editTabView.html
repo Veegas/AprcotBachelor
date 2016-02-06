@@ -1,0 +1,28 @@
+<div id="form-content" class="modal-container">
+    <div class="modal-header">
+        <a class="close" ng-click='closeModal()'>×</a>
+        <h3>Edit Tab</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="form">
+             <div class="">
+                <label for="tabName">Name</label>
+                <input type="text" id="tabName" ng-model="tab.name" placeholder="Name">
+             </div>
+             <div class="">
+                <label for="tabPosition">Position</label>
+                <select class="form-control" id="tabPosition" ng-model="tab.position">
+                    <option ng-repeat="pageTab in facebookTabs">{{ pageTab.position }}</option>
+                </select>
+             </div>
+             <div class="">
+                <label for="tabCampaign">Campaign</label>
+                <input type="text" id="tabCampaign" ng-model="tabCampaign" placeholder="Campaign">
+             </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="deleteTab()"> Delete </button>
+        <button class="btn btn-success" ng-click="saveTab()" id="submit"> Save </button>
+    </div>
+</div>

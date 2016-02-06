@@ -1,0 +1,24 @@
+<div ng-show="results">
+	<h1>Your App Collected The Following Data: </h1>
+	<div>
+		<table class='table'>
+			<thead>
+			  <tr>
+			    <th ng-repeat="(header, value) in results[0].content">
+			      {{header}}
+			    </th>
+			  </tr>
+			</thead>
+			<tbody>
+			 	<tr ng-repeat="result in results">
+			   		<td ng-repeat="value in result.content">
+			     		{{value}}
+			   		</td>
+			 	</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div ng-show="!results">
+	<h1>No Data To Display</h1>
+</div>

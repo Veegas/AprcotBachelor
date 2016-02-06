@@ -1,0 +1,28 @@
+<div id="form-content" class="modal-container">
+    <div class="modal-header">
+        <a class="close" ng-click='closeModal()'>×</a>
+        <h3 class="modal-title">Preview Quiz Campaign</h3>
+    </div>
+    <div class="modal-body" >
+        <form name="quizForm" ng-show="!showScore">
+            <h2>{{ campaignName }}</h2>
+            <div  ng-repeat="field in formFields">
+                {{ field.question }}
+                <div ng-repeat="answer in field.answers">
+                    <input type="radio" ng-model="$parent.userChoice[$parent.$index]" value="{{answer.title}}" required >  {{ answer.title }}
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-info" ng-click="calculateScore()">
+                  Finish
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div ng-show="showScore">
+        <h1> {{ campaignName }} </h1>
+        <h3> Your Quiz Score is:  {{ percentageScore }} % Correct  <h3>
+    </div>
+</div>

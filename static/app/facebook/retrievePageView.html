@@ -1,0 +1,20 @@
+<div class="row">
+   <div class="jumbotron">
+       <h1>{{ page.name }}</h1>
+        <p class="lead"></p>
+         <p><button class="btn btn-primary" ng-click="createTab()" role="button">Create tab</button></p>
+      </div>
+      <div class="row">
+        <div ng-repeat="tab in tabs" class="col-lg-4">
+          <h2>{{ tab.name }}</h2>
+          <p> Created at: {{ tab.date_added }} </p>
+          <p><button class="btn btn-primary" ng-click="editTab(tab.id)" role="button">Edit</button></p>
+          <p>
+            <button class="btn btn-primary" ng-click="" role="button">
+              <a ui-sref="index.analytics({ campaignId: tab.campaign })">Analytics</a>
+            </button>
+          </p>
+       </div>
+      </div>
+  </div>
+</div>

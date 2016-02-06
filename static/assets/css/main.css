@@ -1,0 +1,120 @@
+#form-content .form-horizontal {
+  padding: 10px 15px;
+}
+#form-content .alert-warning {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.angular-google-map-container {
+  height: 400px;
+}
+.marker-labels {
+  color: red;
+  background-color: white;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid black;
+  white-space: nowrap;
+}
+
+.help-inline,
+.help-block {
+  color: #FA8072;
+}
+.addfields {
+  margin: 10px 0;
+}
+.remove {
+  background: #C76868;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 21px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  padding: 4px 9px;
+  vertical-align: top;
+  line-height: 100%;
+}
+.answers {
+  background: #FCFCFC;
+  padding: 16px;
+  border: 1px solid #D5D5D5;
+}
+.answers-block {
+  background: #FCFCFC;
+  padding: 16px;
+  border: 1px solid #D5D5D5;
+}
+
+.help-inline,
+.help-block {
+  color: #FA8072;
+}
+
+.test2 {
+  float: right;
+  color: red;
+}
+#loading-bar .bar {
+  background: #f4ae10;
+}
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #f4ae10;
+  border-left-color: #f4ae10;
+}
+
+.contact-title h1 {
+  color: #337ab7;
+  text-align: center;
+}
+.help-inline,
+.help-block {
+  color: #FA8072;
+}
+
+.test {
+  float: right;
+}
+.jumbotron {
+  text-align: center;
+}
+.aprcot-title {
+  color: #f4ae10;
+}
+.subtitle {
+  color: #337ab7;
+}
+.btn-lg fb-lgn-btn {
+  text-align: center;
+}
+
+.title h1 {
+  text-align: center;
+  color: #f4ae10;
+}
+#payment img {
+  width: 100%;
+}
+.plans {
+  margin-top: 4em;
+}
+.plans .pkg {
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 2%;
+  border-color: #f4ae10;
+}
+.price-month {
+  color: #337ab7;
+}
+.specs-list {
+  list-style-type: none;
+  text-align: left;
+}
+.paypal-form {
+  margin-top: 10em;
+  margin-bottom: 3em;
+}
