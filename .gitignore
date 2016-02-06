@@ -27,6 +27,6 @@ ehthumbs.db
 Thumbs.db
 
 #Apps
-static/app/application/contactus
-static/app/application/quiz
-static/app/application/statichtml
+static/app/application/contactus/
+static/app/application/quiz/
+static/app/application/statichtml/
