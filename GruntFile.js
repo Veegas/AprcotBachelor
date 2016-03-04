@@ -29,6 +29,9 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
+    // var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
+
     grunt.initConfig({
         watch: {
             files: [jsFiles, lessFiles, htmlFiles],
@@ -82,8 +85,22 @@ module.exports = function(grunt) {
                     },
                 }
             }
+        },
+        connect: {
+            server: {
+                options: {
+                    port: 9000,
+                    open: {
+                        target: 'https://127.0.0.1:9000/templates'
+                    },
+                    keepalive: true,
+                    useAvailablePort: true,
+                    protocol: 'https',
+                }
+            }
         }
     });
     // grunt.registerTask('beauty', ['jsbeautifier:main']);
+    // grunt.registerTask('server', ['configureProxies:server', 'connect:server']);
     grunt.registerTask('default', ['watch']);
 };

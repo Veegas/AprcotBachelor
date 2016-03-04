@@ -19,41 +19,6 @@
   white-space: nowrap;
 }
 
-.help-inline,
-.help-block {
-  color: #FA8072;
-}
-.addfields {
-  margin: 10px 0;
-}
-.remove {
-  background: #C76868;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 21px;
-  border: 0;
-  cursor: pointer;
-  display: inline-block;
-  padding: 4px 9px;
-  vertical-align: top;
-  line-height: 100%;
-}
-.answers {
-  background: #FCFCFC;
-  padding: 16px;
-  border: 1px solid #D5D5D5;
-}
-.answers-block {
-  background: #FCFCFC;
-  padding: 16px;
-  border: 1px solid #D5D5D5;
-}
-
-.help-inline,
-.help-block {
-  color: #FA8072;
-}
-
 .test2 {
   float: right;
   color: red;

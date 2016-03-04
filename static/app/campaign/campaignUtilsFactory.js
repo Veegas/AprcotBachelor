@@ -62,7 +62,7 @@
             getCampaignResults: function(id) {
                 return CampaignResults.query({
                     'campaign_id': id
-                }).$promise ;
+                }).$promise;
             },
             submitCampaignResults: function(campaignId, results) {
                 var campaignResultsObj = new CampaignResults(results);
@@ -79,7 +79,7 @@
                         settings: function() {
                             return settingsFunc;
                         },
-                        campaignId: function(){
+                        campaignId: function() {
                             return undefined;
                         }
                     }
