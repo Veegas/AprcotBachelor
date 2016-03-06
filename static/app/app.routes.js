@@ -157,6 +157,16 @@
                         templateUrl: APPS_DIR + 'geolocation/createGeolocationAppView.html'
                     }
                 }
+            })
+            .state('app.treasurehunt', {
+                url: '/treasureHunt',
+                views: {
+                    'content@': {
+                        controller: 'retrieveTreasureHuntAppController',
+                        templateUrl: APPS_DIR + 'treasure_hunt/retrieveTreasureHuntAppView.html'
+                    }
+                }
             });
+
     });
 })();
