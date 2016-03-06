@@ -1,3 +1,16 @@
+.dynamic-puzzle {
+  overflow: hidden;
+}
+.dynamic-puzzle #canvas {
+  overflow: hidden;
+}
+.dynamic-puzzle .puzzle-image {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
 #form-content .form-horizontal {
   padding: 10px 15px;
 }

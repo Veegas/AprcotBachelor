@@ -166,6 +166,15 @@
                       templateUrl: APPS_DIR + 'dynamic_puzzle/retrieveDynamicPuzzleAppView.html'
                     }
                 }
+            })
+            .state('dynamicpuzzle', {
+                url: '/dynamicPuzzle',
+                views: {
+                    'content@': {
+                      // controller: 'retrieveDynamicPuzzleAppController',
+                      templateUrl: APPS_DIR + 'dynamic_puzzle/retrieveDynamicPuzzleAppView.html'
+                    }
+                }
             });
     });
 })();
