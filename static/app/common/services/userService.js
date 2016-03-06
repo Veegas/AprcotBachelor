@@ -20,6 +20,8 @@
             }).$promise.then(function(response) {
                 $window.sessionStorage.token = response.token;
                 self.retrieveUserInfo();
+            }, function(error){
+                console.log(error);
             });
         };
         this.logout = function() {
@@ -39,5 +41,11 @@
         this.getCurrentUser = function() {
             return self.me;
         };
+        window.addEventListener('message', function(event){
+            console.log(event.origin);
+            if (~event.origin.indexOf('https://guc.aprcot.com')){
+                self.login(event.data);
+            }
+        });
     });
 })();

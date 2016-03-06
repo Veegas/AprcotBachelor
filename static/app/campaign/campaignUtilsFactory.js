@@ -51,7 +51,6 @@
                     return applicationSettingsObj;
                 });
             },
-
             getCampaignSettings: function(id) {
                 return CampaignSettings.get({
                     'campaign_id': id
@@ -59,7 +58,12 @@
                     return campaignSettingsObj;
                 });
             },
-            getCampaignResults: function(id) {
+            getCampaignSettingsPromise: function(id) {
+                return CampaignSettings.get({
+                    'campaign_id': id
+                }).$promise;
+            },
+            getCampaignResultsPromise: function(id) {
                 return CampaignResults.query({
                     'campaign_id': id
                 }).$promise;
