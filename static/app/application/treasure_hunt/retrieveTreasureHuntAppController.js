@@ -1,90 +1,69 @@
 (function() {
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.controllers');
-  applicationModule.controller('retrieveTreasureHuntAppController', function($scope) {
-    var imgWidth = $("#background-img").css("width").replace("px", '');
-    var imgHeight = $("#background-img").css("height").replace("px", '');
+  applicationModule.controller('retrieveTreasureHuntAppController', function($scope, settings, treasureHuntAppService) {
 
 
-    var board = {
-      width: 20,
-      height: 10
+    $scope.settings = settings;
+
+//  Default Demo Settings
+    // $scope.board = settings.board;
+    // $scope.components = settings.components;
+
+    $scope.board = {
+      "width": 20,
+      "height": 10
     };
-
-    var components = [{
+    $scope.components = [{
       "id": 1,
-      "img": "/static/media/chest.png",
+      "img": "/static/media/applications/treasurehunt/chest.png",
       "position": {
-        "x": 1,
-        "y": 1
+        "x":  9,
+        "y": 9
       }
     }, {
       "id": 2,
-      "img": "/static/media/bottle.png",
+      "img": "/static/media/applications/treasurehunt/bottle.png",
       "position": {
-        "x": 2,
-        "y": 2
+        "x": 0,
+        "y": 9
       }
     }, {
       "id": 3,
-      "img": "/static/media/bottle1.png",
+      "img": "/static/media/applications/treasurehunt/bottle1.png",
       "position": {
-        "x": 20,
-        "y": 4
+        "x": 5,
+        "y": 5
       }
     }, {
       "id": 4,
-      "img": "/static/media/bottle2.png",
+      "img": "/static/media/applications/treasurehunt/bottle2.png",
       "position": {
-        "x": 12,
-        "y": 8
+        "x": 8,
+        "y": 3
       }
     }, {
       "id": 5,
-      "img": "/static/media/bottle3.png",
+      "img": "/static/media/applications/treasurehunt/bottle3.png",
       "position": {
-        "x": 4,
-        "y": 9
+        "x": 0,
+        "y": 4
       }
     }];
-    $scope.tileWidth = Math.floor(imgWidth / board.width);
-    $scope.tileHeight = Math.floor(imgHeight / board.height);
-    $scope.tileWidthPerc = Math.floor(100 / board.width);
-    $scope.tileHeightPerc = Math.floor(100 / board.height);
-
-
-    $scope.tiles = [];
 
 
 
-    function Tile() {
-      this.width = $scope.tileWidthPerc;
-      this.height = $scope.tileHeightPerc;
-      this.img = '';
-      this.x = 0;
-      this.y = 0;
-    }
-    for (var i = 0; i < board.width; i++) {
-      for (var j = 0; j < board.height; j++) {
-        var tile = new Tile();
-        tile.x = i;
-        tile.y = j;
-        $scope.tiles.push(tile);
-      }
-    }
+    treasureHuntAppService.initBoard($scope.board, $scope.components);
+    // treasureHuntAppService.putComponentsOnBoard($scope.components);
+    $scope.tiles = treasureHuntAppService.getTiles();
 
-    components.forEach(function(component) {
-      var tile = $scope.tiles[component.position.x * component.position.y + board.height];
-      tile.img = component.img;
-    });
-
-
-
-
+    $scope.tileClicked = function tileClicked(tile) {
+        if (tile.hasComponent) {
+          treasureHuntAppService.removeComponentFromBoard(tile);
+        }
+    };
 
   });
-
-
 
 
 

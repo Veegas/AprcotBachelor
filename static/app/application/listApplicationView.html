@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-4" ng-repeat="app in applications">
        <h2>{{ app.name }}</h2>
-       <img src="/media/applications/demos/{{ app.identifier }}.png" width="200" height="200"> </img>
+       <img src="/static/media/applications/demos/{{ app.identifier }}.png" width="200" height="200"> </img>
        <p>
           <button class="btn btn-primary" ng-click="showDemo(app.id, app.identifier)" role="button">Demo</button>
           <button class="btn btn-primary" ng-click="createCampaign(app.id, app.identifier, {})" ng-if="isLoggedIn" role="button">Create</button>

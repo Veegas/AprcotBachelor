@@ -19,8 +19,19 @@
   white-space: nowrap;
 }
 
+.treasure-hunt {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  padding: 1%;
+}
+.treasure-back {
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
 #background-img {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   left: 0;
@@ -31,6 +42,17 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+.component-img {
+  display: block;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+.highlight-border {
+  border: rgba(0, 0, 0, 0.5) 3px double;
 }
 
 .test2 {

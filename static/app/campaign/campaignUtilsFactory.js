@@ -48,6 +48,7 @@
                 return ApplicationSettings.get({
                     'id': applicationId
                 }).$promise.then(function(applicationSettingsObj) {
+                    console.log("applicationSettingsObj: ", applicationSettingsObj);
                     return applicationSettingsObj;
                 });
             },

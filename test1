@@ -1,0 +1,42 @@
+$scope.settings = settings;
+$scope.board = settings.board;
+$scope.components = settings.components;
+
+
+
+var components = [{
+  "id": 1,
+  "img": "/static/media/chest.png",
+  "position": {
+    "x": 1,
+    "y": 1
+  }
+}, {
+  "id": 2,
+  "img": "/static/media/bottle.png",
+  "position": {
+    "x": 2,
+    "y": 2
+  }
+}, {
+  "id": 3,
+  "img": "/static/media/bottle1.png",
+  "position": {
+    "x": 20,
+    "y": 4
+  }
+}, {
+  "id": 4,
+  "img": "/static/media/bottle2.png",
+  "position": {
+    "x": 12,
+    "y": 8
+  }
+}, {
+  "id": 5,
+  "img": "/static/media/bottle3.png",
+  "position": {
+    "x": 4,
+    "y": 9
+  }
+}];

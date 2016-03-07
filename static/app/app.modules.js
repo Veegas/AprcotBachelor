@@ -38,7 +38,8 @@
         'ngAnalytics',
         'ngMessages',
         'angular-bind-html-compile',
-        'ngFileUpload'
+        'ngFileUpload',
+        'ngDraggable',
     ]);
 
     // angular.module('aprcotApp.common.controllers.headerController', []);

@@ -166,6 +166,15 @@
                         templateUrl: APPS_DIR + 'treasure_hunt/retrieveTreasureHuntAppView.html'
                     }
                 }
+            })
+            .state('treasurehunt_create', {
+                url: '/treasureHunt',
+                views: {
+                    'content@': {
+                        controller: 'createTreasureHuntAppController',
+                        templateUrl: APPS_DIR + 'treasure_hunt/createTreasureHuntAppView.html'
+                    }
+                }
             });
 
     });
