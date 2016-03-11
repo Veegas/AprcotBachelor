@@ -170,7 +170,7 @@
             .state('treasurehunt_create', {
                 url: '/treasureHunt',
                 views: {
-                    'content@': {
+                    'full-screen@': {
                         controller: 'createTreasureHuntAppController',
                         templateUrl: APPS_DIR + 'treasure_hunt/createTreasureHuntAppView.html'
                     }

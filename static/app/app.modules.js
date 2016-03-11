@@ -5,6 +5,7 @@
         'aprcotApp.common.controllers',
         'aprcotApp.common.fileupload.controllers',
         'aprcotApp.common.fileupload.services',
+        'aprcotApp.common.fileupload.directives',
         'aprcotApp.home.services',
         'aprcotApp.home.controllers',
         'aprcotApp.contact.services',
@@ -67,6 +68,7 @@
 
     angular.module('aprcotApp.common.fileupload.controllers', []);
     angular.module('aprcotApp.common.fileupload.services', []);
+    angular.module('aprcotApp.common.fileupload.directives', []);
 
     angular.module('aprcotApp.application.services', []);
     angular.module('aprcotApp.application.controllers', []);

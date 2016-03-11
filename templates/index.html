@@ -28,8 +28,10 @@
     <body ng-cloak>
         <header ui-view="header"></header>
         <nav ui-view="nav"></nav>
-        <main id="main" class="container">
-            <section id="content" ui-view="content"></section>
+        <main id="main" ui-view="full-screen">
+            <div class="container">
+              <section id="content" ui-view="content"></section>
+            </div>
         </main>
         <footer id="footer" ui-view="footer"></footer>
 
@@ -66,6 +68,7 @@
             <script src="/static/vendors/ng-file-upload/ng-file-upload-shim.min.js"></script>
             <script src="/static/vendors/ng-file-upload/ng-file-upload.min.js"></script>
             <script src="/static/vendors/ngDraggable/ngDraggable.js"></script>
+            <script src="/static/vendors/interact/dist/interact.js"></script>
 
         <!-- Add New Bower Component JS Above -->
 
@@ -112,6 +115,7 @@
         <!-- End Controllers -->
 
         <!-- Directives -->
+          <script src="/static/app/common/fileupload/fileuploadDirectives.js"></script>
 
         <!-- End Directives -->
 

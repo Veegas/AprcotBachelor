@@ -6,7 +6,6 @@
         $scope.uploadFiles = function(file, errFiles) {
             $scope.file = file;
             $scope.errFile = errFiles && errFiles[0];
-            console.log(file);
             if (file) {
                 file.upload = Upload.upload({
                     'url': '/api/images/',

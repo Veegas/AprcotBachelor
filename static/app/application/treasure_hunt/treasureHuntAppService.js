@@ -17,7 +17,7 @@
       this.width = treasureHunt.tileWidthPerc;
       this.height = treasureHunt.tileHeightPerc;
 
-      this.img = '';
+      this.component = {};
       this.x = 0;
       this.y = 0;
       this.hasComponent = false;
@@ -38,28 +38,35 @@
     };
 
     this.putComponentsOnBoard = function putComponentsOnBoard(components) {
+      treasureHunt.components = components;
       components.forEach(function(component) {
-        var tile = treasureHunt.tiles[component.position.y + component.position.x * treasureHunt.board.width];
+        var tile = treasureHunt.tiles[component.position.x + component.position.y * treasureHunt.board.width];
         if (tile) {
-          tile.img = component.img;
+          tile.component = component;
           tile.hasComponent = true;
-          treasureHunt.tiles[component.position.y + component.position.x * treasureHunt.board.width] = tile;
         }
       });
     };
 
     this.removeComponentFromBoard = function removeComponentFromBoard(tile) {
-      var foundTileIndex = this.tiles.indexOf(tile);
-      this.tiles[foundTileIndex].img = '';
+      // var foundTileIndex = this.tiles.indexOf(tile);
+      console.log("tile to be removed: ", tile);
+      treasureHunt.components = treasureHunt.components.filter(function (component) {
+        return component.position.x !== tile.x || component.position.y !== tile.y;
+      });
+
+      console.log("treasureHunt.components: ", treasureHunt.components);
+      this.putComponentsOnBoard(treasureHunt.components);
+
     };
 
     this.splitBoardToTiles = function splitBoardToTiles() {
       var tiles = [];
-      for (var i = 0; i < this.board.width; i++) {
-        for (var j = 0; j < this.board.height; j++) {
+      for (var i = 0; i < this.board.height; i++) {
+        for (var j = 0; j < this.board.width; j++) {
           var tile = new Tile();
-          tile.y = j;
-          tile.x = i;
+          tile.y = i;
+          tile.x = j;
           tiles.push(tile);
         }
       }

@@ -1,26 +1,121 @@
+@dark-grey: #5f6f81;
+@light-grey: #c6d0da;
 .treasure-hunt {
   position: relative;
   width: 100%;
   height: 50vh;
   padding: 1%;
 }
-.treasure-back {
+.treasure-hunt-editor {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.center-editor {
   height: 100%;
-  background-size: 100% 100%;
+  padding: 0;
+}
+.app-editor {
+  // width: 100%;
+  height: 75%;
+  padding: 0 15px;
+  border-right: solid 1px @light-grey;
+}
+.bottom-editor-menu {
+  height: 25%;
+  border: 1px solid @light-grey;
+  border-left: 0;
+  border-bottom: 0;
+  padding: 4%;
+}
+.left-editor-menu {
+  height: 100%;
+  border-right: 1px solid @light-grey;
+  padding: 0;
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: @dark-grey;
+    list-style: none;
+    text-transform: none;
+    font-weight: 300;
+    font-family: 'Lato', Arial, sans-serif;
+    line-height: 60px;
+  }
+  a {
+    display: block;
+    height: 100%;
+    color: @dark-grey;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      background: @dark-grey;
+      color: white;
+    }
+  }
+  .menu-item {
+    display: block;
+    float: left;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    box-shadow: inset 0 1px @light-grey;
+    &:last-child {
+      border-bottom: 1px solid @light-grey;
+    }
+    .menu-link {
+      padding: 0 30px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+  }
+}
+.treasure-back {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
 }
 #background-img {
   position: relative;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
+  height: 60%;
+  width: auto;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .treasure-cell {
   position: absolute;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+.height-100 {
+  height: 100%;
+}
+.component-item-wrapper {
+  padding: 5px;
+
+  .component-add {
+    height: 100%;
+    width: 100%;
+    border: solid 1px @dark-grey;
+
+  }
+  
+}
+.component-item {
+  position: relative;
+  border: solid 1px @dark-grey;
+  height: 100%;
+  border-radius: 3px;
 }
 .component-img {
   display: block;
@@ -30,6 +125,53 @@
   height: 100%;
   width: 100%;
 }
+.component-aspect {
+  position: relative;
+  height: auto;
+  width: 50%;
+  padding-bottom: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
+.component-add-icon {
+  color: #75ffa0;
+  font-size: 4em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .highlight-border {
   border: rgba(0, 0, 0, 0.5) 3px double;
+}
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.inputfile + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: @dark-grey;
+  background-color: white;
+  display: inline-block;
+  padding: 1% 5%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: @dark-grey;
+  color: white;
+}
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label {
+  cursor: pointer;
 }

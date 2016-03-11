@@ -1,44 +1,74 @@
-<div class="treasure-hunt">
-  <div class="" id="background-img">
-    <!-- <img src="{{settings.background}}" width="100%" height="100%" alt=""/> -->
-    <!-- <img src="http://i.imgur.com/qCS8rsE.jpg" width="100%" height="100%" alt=""/> -->
-    <!-- <div class="treasure-back" style="background-image:url('http://i.imgur.com/qCS8rsE.jpg')" width="100%" height="100%" alt=""/> -->
-    <img class="treasure-back" data-ng-src="{{backgroundImage}}" width="100%" height="100%" alt=""/>
-    <div ui-sortable ng-model="tiles">
-      <div class="treasure-cell highlight-border" ng-repeat="tile in tiles" style="left: {{tile.width * tile.x}}%; top: {{tile.height * tile.y}}%;
-      width: {{tile.width}}%; height: {{tile.height}}%;" ng-click="tileClicked(tile)" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)">
-          <div class="component-img" style="background-image: url({{tile.img}})" ng-drag="true" ng-drag-data="{{tile}}"></div>
-          <!-- <div class="component-img" style="background-image: url({{tile.img}})" ng-drag="true" ng-drag-data="{{tile}}" ng-drag-success="onDragComplete($data,$event, tile)"></div> -->
+<div class="treasure-hunt-editor">
+
+  <div class="left-editor-menu col-md-2">
+    <ul class="editor-menu">
+      <li class="menu-item">
+        <a class="menu-link" ng-click="showBackgroundMenu()">Background</a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" ng-click="showComponentsMenu()">Components</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="center-editor col-md-8">
+
+    <div class="app-editor">
+      <div class="" id="background-img">
+        <!-- <img src="{{settings.background}}" width="100%" height="100%" alt=""/> -->
+        <!-- <img src="http://i.imgur.com/qCS8rsE.jpg" width="100%" height="100%" alt=""/> -->
+        <div class="treasure-back" style="background-image:url({{backgroundImage}})" ng-style="{{backgroundSize}}" alt=""></div>
+        <!-- <img class="treasure-back" data-ng-src="{{backgroundImage}}" width="100%" height="100%" alt=""/> -->
+          <div class="treasure-cell highlight-border" ng-repeat="tile in tiles" style="left: {{tile.width * tile.x}}%; top: {{tile.height * tile.y}}%;
+        width: {{tile.width}}%; height: {{tile.height}}%;" ng-click="tileClicked(tile)" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)">
+            <div class="component-img" style="background-image: url({{tile.component.img}})" ng-drag="true"  ng-drag-data="{{tile}}" ng-model="tile"></div>
+            <!-- <div class="component-img" style="background-image: url({{tile.img}})" ng-drag="true" ng-drag-data="{{tile}}" ng-drag-success="onDragComplete($data,$event, tile)"></div> -->
+          </div>
       </div>
     </div>
-  </div>
-  <div class="treasure-editor">
-    <form name="treasureForm">
-      <div class="row">
 
-        <div class="form-group col-sm-3">
-          <label>Board Width:
-            <input type="number" class="form-control" name="width" ng-model="board.width" ng-model-options="{ getterSetter: true }"/>
-          </label>
+    <div class="bottom-editor-menu">
+      <form name="treasureForm" class="height-100">
+        <div class="background-menu" ng-hide="componentsMenu">
+          <div class="form-group col-sm-4">
+            <label>Board Width:
+              <input type="number" class="form-control" name="width" ng-model="board.width" ng-model-options="{ getterSetter: true }"/>
+            </label>
+          </div>
+          <div class="form-group col-sm-4">
+            <label>Board Height:
+              <input type="number" class="form-control" name="height" ng-model="board.height" ng-model-options="{ getterSetter: true }"/>
+            </label>
+          </div>
+          <div class="form-group col-sm-4">
+            <label>Background Image:
+              <input type="file" name="file" id="file" class="inputfile" file-change="renderBackground(uploads.background)" ng-model="uploads.background" ng-model-options="{ getterSetter: true }"/>
+              <label for="file">Choose a file</label>
+            </label>
+          </div>
         </div>
-        <div class="form-group col-sm-3">
-          <label>Board Height:
-            <input type="number" class="form-control" name="height" ng-model="board.height" ng-model-options="{ getterSetter: true }"/>
-          </label>
-        </div>
-        <div class="form-group col-sm-3">
-          <label>Background Image:
-            <input id="background-upload" type="file" class="form-control" name="height" ng-model="background-file" ng-model-options="{ getterSetter: true }"/>
-          </label>
-        </div>
-      </div>
 
-    </form>
+        <div class="components-menu height-100" ng-show="componentsMenu">
+          <div class="component-item-wrapper col-md-2 height-100"  ng-repeat="component in components">
+            <div class="component-item">
+              <div class="component-img component-aspect " style="background-image: url({{component.img}})" ng-drag="true" ng-drag-data="{{component}}"></div>
+            </div>
+          </div>
+          <div class="col-md-2 height-100 component-item-wrapper">
+            <input type="file" name="components" id="components" class="inputfile" file-change="renderComponents(uploagrunds.components)" ng-model="uploads.components" ng-model-options="{ getterSetter: true }" multiple/>
+            <label for="components" class="component-add"> <span class="glyphicon glyphicon-plus component-add-icon"></span></label>
+          </div>
+        </div>
+      </form>
+    </div>
+
   </div>
+
+</div>
 </div>
 
 <script type="text/ng-template" id="addComponent.html">
-  <button class="btn btn-default" type="button">
-    Add
-  </button>
+<button class="btn btn-default" type="button">
+  Add
+</button>
 </script>
