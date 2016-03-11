@@ -15,6 +15,7 @@ static_root/
 
 #Media
 media/*
+static/media/*
 
 # OS generated files #
 ######################
