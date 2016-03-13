@@ -17,10 +17,10 @@
       <div class="" id="background-img">
         <!-- <img src="{{settings.background}}" width="100%" height="100%" alt=""/> -->
         <!-- <img src="http://i.imgur.com/qCS8rsE.jpg" width="100%" height="100%" alt=""/> -->
-        <div class="treasure-back" style="background-image:url({{backgroundImage}})" ng-style="{{backgroundSize}}" alt=""></div>
+        <div class="treasure-back" style="background-image:url({{backgroundImage}})" ng-style="{{backgroundSize}}" alt="" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)"></div>
         <!-- <img class="treasure-back" data-ng-src="{{backgroundImage}}" width="100%" height="100%" alt=""/> -->
-          <div class="treasure-cell highlight-border" ng-repeat="tile in tiles" style="left: {{tile.width * tile.x}}%; top: {{tile.height * tile.y}}%;
-        width: {{tile.width}}%; height: {{tile.height}}%;" ng-click="tileClicked(tile)" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)">
+          <div class="treasure-cell highlight-border" ng-repeat="tile in tiles" style="left: {{tile.left}}%; top: {{tile.top}}%;
+        width: {{tile.width}}%; height: {{tile.height}}%;" ng-click="tileClicked(tile)">
             <div class="component-img" style="background-image: url({{tile.component.img}})" ng-drag="true"  ng-drag-data="{{tile}}" ng-model="tile"></div>
             <!-- <div class="component-img" style="background-image: url({{tile.img}})" ng-drag="true" ng-drag-data="{{tile}}" ng-drag-success="onDragComplete($data,$event, tile)"></div> -->
           </div>
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="col-md-2 height-100 component-item-wrapper">
-            <input type="file" name="components" id="components" class="inputfile" file-change="renderComponents(uploagrunds.components)" ng-model="uploads.components" ng-model-options="{ getterSetter: true }" multiple/>
+            <input type="file" name="components" id="components" class="inputfile" file-change="renderComponents(uploads.components)" ng-model="uploads.components" ng-model-options="{ getterSetter: true }" multiple/>
             <label for="components" class="component-add"> <span class="glyphicon glyphicon-plus component-add-icon"></span></label>
           </div>
         </div>

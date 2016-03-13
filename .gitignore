@@ -14,8 +14,8 @@ static/debug_toolbar/
 static_root/
 
 #Media
-media/*
-static/media/*
+media/
+static/media/
 
 # OS generated files #
 ######################

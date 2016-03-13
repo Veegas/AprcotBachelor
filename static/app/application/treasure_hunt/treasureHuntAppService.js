@@ -10,17 +10,20 @@
     };
     this.tileWidthPerc = 0;
     this.tileHeightPerc = 0;
+    this.tiles = [];
 
-
-    function Tile() {
+    function Tile(x, y, component) {
 
       this.width = treasureHunt.tileWidthPerc;
       this.height = treasureHunt.tileHeightPerc;
 
-      this.component = {};
-      this.x = 0;
-      this.y = 0;
-      this.hasComponent = false;
+      this.hasComponent = true;
+      this.component = component;
+      this.x = x;
+      this.y = y;
+      this.left = (this.x / treasureHunt.board.width) * 100;
+      this.top = (this.y / treasureHunt.board.height) * 100;
+
     }
 
     this.getTiles = function getTiles() {
@@ -33,18 +36,15 @@
       this.tileWidthPerc = 100 / this.board.width;
       this.tileHeightPerc = 100 / this.board.height;
 
-      this.splitBoardToTiles();
+      // this.splitBoardToTiles();
       this.putComponentsOnBoard(boardComponents);
     };
 
     this.putComponentsOnBoard = function putComponentsOnBoard(components) {
       treasureHunt.components = components;
       components.forEach(function(component) {
-        var tile = treasureHunt.tiles[component.position.x + component.position.y * treasureHunt.board.width];
-        if (tile) {
-          tile.component = component;
-          tile.hasComponent = true;
-        }
+        var tile = new Tile(component.position.x, component.position.y, component);
+        treasureHunt.tiles.push(tile);
       });
     };
 

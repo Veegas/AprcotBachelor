@@ -11,15 +11,19 @@
        only settings to the function and uncomment default settings*/
       CampaignUtils.getDefaultSettings('22').then(function(settings) {
         $scope.settings = settings;
-        $scope.backgroundImage = $scope.settings.background;
+
+        /*Default Demo Settings*/
+
+/*      $scope.backgroundImage = $scope.settings.background;
+        $scope.board = settings.board;
+        $scope.components = settings.components;
+*/
+        treasureHuntAppService.initBoard($scope.board, $scope.components);
+        $scope.tiles = treasureHuntAppService.getTiles();
+
       });
 
-      /*Default Demo Settings*/
 
-      /*
-            $scope.board = settings.board;
-            $scope.components = settings.components;
-      */
 
 
       $scope.uploads = {
@@ -28,7 +32,7 @@
       };
 
 
-
+      $scope.backgroundImage = "/static/media/applications/treasurehunt/background.jpg";
       $scope.board = {
         "width": 20,
         "height": 10
@@ -37,32 +41,25 @@
         "id": 1,
         "img": "/static/media/applications/treasurehunt/chest.png",
         "position": {
-          "x": 9,
+          "x": 15,
           "y": 9
         }
       }, {
         "id": 2,
-        "img": "/static/media/applications/treasurehunt/bottle.png",
+        "img": "/static/media/applications/treasurehunt/bottle4.png",
         "position": {
-          "x": 0,
+          "x": 3,
           "y": 9
         }
       }, {
         "id": 3,
-        "img": "/static/media/applications/treasurehunt/bottle1.png",
-        "position": {
-          "x": 5,
-          "y": 5
-        }
-      }, {
-        "id": 4,
         "img": "/static/media/applications/treasurehunt/bottle2.png",
         "position": {
           "x": 8,
-          "y": 3
+          "y": 8
         }
       }, {
-        "id": 5,
+        "id": 4,
         "img": "/static/media/applications/treasurehunt/bottle3.png",
         "position": {
           "x": 0,
@@ -72,8 +69,6 @@
 
 
 
-      treasureHuntAppService.initBoard($scope.board, $scope.components);
-      $scope.tiles = treasureHuntAppService.getTiles();
 
       function backgroundSize() {
         return "cover";
@@ -93,19 +88,19 @@
       };
 
       $scope.onDropComplete = function onDropComplete(source, event, target) {
-        // var DropComplete = {source: source, event: event, target: target};
-        // console.log("DropComplete: ", DropComplete);
-        var tempComponent = JSON.parse(JSON.stringify(source.component));
-        // console.log("tempComponent: ", tempComponent);
-        tempComponent.position.x = target.x;
-        tempComponent.position.y = target.y;
-
-        $scope.components.push(tempComponent);
-        treasureHuntAppService.putComponentsOnBoard($scope.components);
-
-
-        // console.log($scope.components);
-          $scope.findOccupiedTiles();
+        var DropComplete = {source: source, event: event, target: target};
+        console.log("DropComplete: ", DropComplete);
+        // var tempComponent = JSON.parse(JSON.stringify(source.component));
+        // // console.log("tempComponent: ", tempComponent);
+        // tempComponent.position.x = target.x;
+        // tempComponent.position.y = target.y;
+        //
+        // $scope.components.push(tempComponent);
+        // treasureHuntAppService.putComponentsOnBoard($scope.components);
+        //
+        //
+        // // console.log($scope.components);
+        //   $scope.findOccupiedTiles();
       };
 
       $scope.findOccupiedTiles = function findOccupiedTiles() {
@@ -167,8 +162,8 @@
             }
           };
           $scope.components.push(component);
+          $scope.$apply();
         };
-        $scope.$apply();
         console.log($scope.components);
       };
 
