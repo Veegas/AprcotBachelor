@@ -12,17 +12,18 @@
       CampaignUtils.getDefaultSettings('22').then(function(settings) {
         $scope.settings = settings;
 
+
+
         /*Default Demo Settings*/
 
-/*      $scope.backgroundImage = $scope.settings.background;
-        $scope.board = settings.board;
-        $scope.components = settings.components;
-*/
+        /*      $scope.backgroundImage = $scope.settings.background;
+                $scope.board = settings.board;
+                $scope.components = settings.components;
+        */
         treasureHuntAppService.initBoard($scope.board, $scope.components);
         $scope.tiles = treasureHuntAppService.getTiles();
 
       });
-
 
 
 
@@ -69,7 +70,6 @@
 
 
 
-
       function backgroundSize() {
         return "cover";
       }
@@ -88,7 +88,11 @@
       };
 
       $scope.onDropComplete = function onDropComplete(source, event, target) {
-        var DropComplete = {source: source, event: event, target: target};
+        var DropComplete = {
+          source: source,
+          event: event,
+          target: target
+        };
         console.log("DropComplete: ", DropComplete);
         // var tempComponent = JSON.parse(JSON.stringify(source.component));
         // // console.log("tempComponent: ", tempComponent);
@@ -175,6 +179,12 @@
         $scope.componentsMenu = true;
       };
 
+      $scope.saveSettings = function saveSettings() {
+        var settings = $scope.settings;
+        settings.form_fields = settings.form_fields[0];
+        CampaignUtils.createCampaign(settings, settings.application_id);
+
+      };
 
 
     });

@@ -9,21 +9,25 @@
         return {
             create: function(applicationId) {
                 var modalInstance = this.view(applicationId, {}, false);
-                modalInstance.result.then(function(settings) {
-                    var campaignObj = new Campaign({
-                        application: applicationId
-                    });
-                    var campaignSettingsObj = new CampaignSettings(settings);
-                    campaignObj.$save().then(function() {
-                        campaignSettingsObj['campaign_id'] = campaignObj.id;
-                        campaignSettingsObj.$save().then(function() {
-                            var state = Helpers.getStateFromIdentifier('addTab');
-                            var resolve = {};
-                            resolve['campaignInstance'] = function() {
-                                return campaignObj;
-                            };
-                            Helpers.createModalFromState(state, resolve);
-                        });
+                var CampaignUtils = this;
+                modalInstance.result.then(function (settings) {
+                  CampaignUtils.createCampaign(settings, applicationId);
+                });
+            },
+            createCampaign: function(settings, applicationId) {
+                var campaignObj = new Campaign({
+                    application: applicationId
+                });
+                var campaignSettingsObj = new CampaignSettings(settings);
+                campaignObj.$save().then(function() {
+                    campaignSettingsObj['campaign_id'] = campaignObj.id;
+                    campaignSettingsObj.$save().then(function() {
+                        var state = Helpers.getStateFromIdentifier('addTab');
+                        var resolve = {};
+                        resolve['campaignInstance'] = function() {
+                            return campaignObj;
+                        };
+                        Helpers.createModalFromState(state, resolve);
                     });
                 });
             },
@@ -56,7 +60,7 @@
                 return CampaignSettings.get({
                     'campaign_id': id
                 }).$promise.then(function(campaignSettingsObj) {
-                    return campaignSettingsObj;
+                      return campaignSettingsObj;
                 });
             },
             getCampaignSettingsPromise: function(id) {
@@ -75,7 +79,6 @@
                 return campaignResultsObj.$save();
             },
             view: function(applicationId, settingsFunc, readonly) {
-
                 var application = $rootScope.APPLICATION_DATA[applicationId];
                 var stateName = readonly ? application.identifier : application.identifier + '_create';
                 var stateObj = Helpers.getAppStateFromIdentifier(stateName);
