@@ -163,7 +163,7 @@
                 views: {
                     'content@': {
                         controller: 'retrieveTreasureHuntAppController',
-                        templateUrl: APPS_DIR + 'treasure_hunt/retrieveTreasureHuntAppView.html'
+                        templateUrl: APPS_DIR + 'treasure_hunt/views/retrieveTreasureHuntAppView.html'
                     }
                 }
             })
@@ -172,7 +172,7 @@
                 views: {
                     'full-screen@': {
                         controller: 'createTreasureHuntAppController',
-                        templateUrl: APPS_DIR + 'treasure_hunt/createTreasureHuntAppView.html'
+                        templateUrl: APPS_DIR + 'treasure_hunt/views/createTreasureHuntAppView.html'
                     }
                 }
             });

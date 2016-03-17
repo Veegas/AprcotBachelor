@@ -35,36 +35,36 @@
 
       $scope.backgroundImage = "/static/media/applications/treasurehunt/background.jpg";
       $scope.board = {
-        "width": 20,
-        "height": 10
+        "width": 4,
+        "height": 4
       };
       $scope.components = [{
         "id": 1,
         "img": "/static/media/applications/treasurehunt/chest.png",
         "position": {
-          "x": 15,
-          "y": 9
+          "x": 0,
+          "y": 0
         }
       }, {
         "id": 2,
         "img": "/static/media/applications/treasurehunt/bottle4.png",
         "position": {
-          "x": 3,
-          "y": 9
+          "x": 1,
+          "y": 0
         }
       }, {
         "id": 3,
         "img": "/static/media/applications/treasurehunt/bottle2.png",
         "position": {
-          "x": 8,
-          "y": 8
+          "x": 0,
+          "y": 1
         }
       }, {
         "id": 4,
         "img": "/static/media/applications/treasurehunt/bottle3.png",
         "position": {
-          "x": 0,
-          "y": 4
+          "x": 1,
+          "y": 1
         }
       }];
 
@@ -75,7 +75,8 @@
       }
 
       $scope.backgroundSize = {
-        "background-size": backgroundSize()
+        "background-size": backgroundSize(),
+        "background-image": 'url(' + $scope.backgroundImage + ')'
       };
 
 
@@ -167,8 +168,9 @@
           };
           $scope.components.push(component);
           $scope.$apply();
+          $scope.drawComponents($scope.components);
+          console.log($scope.components);
         };
-        console.log($scope.components);
       };
 
       $scope.showBackgroundMenu = function showBackgroundMenu() {
