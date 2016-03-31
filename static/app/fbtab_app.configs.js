@@ -25,7 +25,7 @@
             applicationPromise.then(function(response) {
                 var APPLICATION_DATA = {};
                 angular.forEach(response, function(app) {
-                    console.log(APPLICATION_DATA);
+                    console.log("APPLICATION_DATA: ", APPLICATION_DATA);
                     APPLICATION_DATA[app.id] = app;
                 });
                 $rootScope.APPLICATION_DATA = APPLICATION_DATA;

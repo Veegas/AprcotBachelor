@@ -63,6 +63,11 @@
         }
     };
 
+    $scope.backgroundStyle = {
+      "background-size": 'cover',
+      "background-image": 'url(' + $scope.settings.backgroundImage + ')'
+    };
+
   });
 
 

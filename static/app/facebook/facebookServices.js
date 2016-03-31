@@ -57,7 +57,7 @@
     facebookModule.factory('FacebookPageTabs', [
         '$resource',
         function($resource) {
-            return $resource('https://guc.aprcot.com/ /page/:page_id/tab/', {
+            return $resource('https://guc.aprcot.com/api/page/:page_id/tab/', {
                 'page_id': '@page_id'
             });
         }

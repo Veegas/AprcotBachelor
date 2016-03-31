@@ -1,3 +1,5 @@
+/*globals fabric */
+
 (function() {
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.directives');
@@ -7,17 +9,12 @@
 
 
     function link($scope, element, attrs) {
-      var canvas = element[0];
 
-
-      canvas.width = canvas.parentNode.clientWidth;
-      canvas.height = canvas.parentNode.clientHeight;
+      var canvas = new fabric.Canvas(attrs.id, {
+        width: element[0].parentNode.clientWidth,
+        height: element[0].parentNode.clientHeight
+      });
       var ctx = canvas.getContext('2d');
-      var tile = {
-        width: canvas.width / 4,
-        height: canvas.height / 4
-      };
-
 
       $scope.drawComponents = function drawComponents(components) {
         components.forEach(function(component) {
@@ -25,24 +22,25 @@
           var img = new Image(); // Create new img element
           img.src = component.img;
           img.onload = function() {
-            var aspect = img.width / img.height;
-            var imgHeight = 50;
-            var imgWidth = imgHeight * aspect;
-            ctx.drawImage(img, component.position.x * tile.width, component.position.y * tile.height, imgWidth, imgHeight);
+            var imgInstance = new fabric.Image(img, {
+              left: component.position.x,
+              top: component.position.y,
+              width: component.size.width,
+              height: component.size.height,
+              angle: component.angle
+            });
+            canvas.add(imgInstance);
+
+
           };
         });
-      }
+      };
 
 
 
       $scope.$watch('components', function(oldComponents, newComponents) {
         $scope.drawComponents(newComponents);
       });
-
-
-
-      ctx.rect(0, 0, tile.width, tile.height);
-      ctx.stroke();
 
 
 

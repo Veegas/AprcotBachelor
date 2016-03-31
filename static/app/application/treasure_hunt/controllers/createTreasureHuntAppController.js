@@ -40,32 +40,56 @@
       };
       $scope.components = [{
         "id": 1,
+        "name": "Treasure Chest",
         "img": "/static/media/applications/treasurehunt/chest.png",
         "position": {
-          "x": 0,
+          "x": 50,
           "y": 0
-        }
+        },
+        "size": {
+          "height": 50,
+          "width": 35
+        },
+        "angle": 0
       }, {
         "id": 2,
+        "name": "Red Bottle",
         "img": "/static/media/applications/treasurehunt/bottle4.png",
         "position": {
-          "x": 1,
-          "y": 0
-        }
+          "x": 15,
+          "y": 50
+        },
+        "size": {
+          "height": 50,
+          "width": 35
+        },
+        "angle": 0
       }, {
         "id": 3,
+        "name": "Green Bottle",
         "img": "/static/media/applications/treasurehunt/bottle2.png",
         "position": {
           "x": 0,
           "y": 1
-        }
+        },
+        "size": {
+          "height": 50,
+          "width": 35
+        },
+        "angle": 0
       }, {
         "id": 4,
+        "name": "Black Bottle",
         "img": "/static/media/applications/treasurehunt/bottle3.png",
         "position": {
-          "x": 1,
-          "y": 1
-        }
+          "x": 70,
+          "y": 20
+        },
+        "size": {
+          "height": 50,
+          "width": 35
+        },
+        "angle": 0
       }];
 
 

@@ -2,8 +2,9 @@
   <div class="" id="background-img">
     <!-- <img src="{{settings.background}}" width="100%" height="100%" alt=""/> -->
     <!-- <img src="http://i.imgur.com/qCS8rsE.jpg" width="100%" height="100%" alt=""/> -->
-    <div class="treasure-back" style="background-image:url('http://i.imgur.com/qCS8rsE.jpg')" width="100%" height="100%" alt=""/>
+    <!-- <div class="treasure-back" style="background-image:url('http://i.imgur.com/qCS8rsE.jpg')" width="100%" height="100%" alt=""/>
     <div class="treasure-cell" ng-repeat="tile in tiles" style="left: {{tile.width * tile.x}}%; top: {{tile.height * tile.y}}%;
-    width: {{tile.width}}%; height: {{tile.height}}%; background-image:url({{tile.img}});" ng-click="tileClicked(tile)"></div>
+    width: {{tile.width}}%; height: {{tile.height}}%; background-image:url({{tile.img}});" ng-click="tileClicked(tile)"></div> -->
+    <canvas treasure-hunt-directive class="treasure-back"  style="background-image:url({{backgroundImage}})" ng-style="{{backgroundStyle}}" width="100%" height="100%" alt="" ng-bind="components" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)"></canvas>
   </div>
 </div>

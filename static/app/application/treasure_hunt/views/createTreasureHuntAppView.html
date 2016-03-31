@@ -18,9 +18,7 @@
 
     <div class="app-editor">
       <div class="" id="background-img">
-        <!-- <img src="{{settings.background}}" width="100%" height="100%" alt=""/> -->
-        <!-- <img src="http://i.imgur.com/qCS8rsE.jpg" width="100%" height="100%" alt=""/> -->
-        <canvas treasure-hunt-directive class="treasure-back"  ng-style="{{backgroundStyle}}" width="100%" height="100%" alt="" ng-bind="components" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)"></canvas>
+        <canvas id="treasure-canvas" treasure-hunt-directive class="treasure-back"  style="background-image:url({{backgroundImage}})" ng-style="{{backgroundStyle}}" width="100%" height="100%" alt="" ng-bind="components" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)"></canvas>
         <!-- <img class="treasure-back" data-ng-src="{{backgroundImage}}" width="100%" height="100%" alt=""/> -->
           <!-- <div class="treasure-cell highlight-border" ng-repeat="tile in tiles" style="left: {{tile.left}}%; top: {{tile.top}}%;
         width: {{tile.width}}%; height: {{tile.height}}%;" ng-click="tileClicked(tile)">
