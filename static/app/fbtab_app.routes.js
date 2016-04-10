@@ -45,6 +45,15 @@
                     }
                 }
             })
+            .state('app.treasurehunt', {
+                url: '/treasureHunt',
+                views: {
+                    'content@': {
+                        controller: 'retrieveTreasureHuntAppController',
+                        templateUrl: APPS_DIR + 'treasure_hunt/views/retrieveTreasureHuntAppView.html'
+                    }
+                }
+            })
             .state('app.geolocation_create', {
                 url: '/geolocation',
                 views: {
