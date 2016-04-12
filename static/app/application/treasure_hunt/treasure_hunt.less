@@ -82,8 +82,8 @@
   }
 }
 .treasure-back {
-  // width: 100%;
-  // height: 100%;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -94,6 +94,16 @@
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
+}
+// FIXME: Workaround for retrieve of treasure hunt modal width issue;
+#retrieve-background {
+  width: 570px;
+  height: 342px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
 }
 .treasure-cell {
   position: absolute;

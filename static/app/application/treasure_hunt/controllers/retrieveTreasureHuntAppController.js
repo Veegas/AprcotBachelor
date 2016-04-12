@@ -9,93 +9,77 @@
     // $scope.settings = settings;
     // $scope.board = settings.board;
     // $scope.components = settings.components;
-    $scope.settings = {
-      "application_id": 22,
-      "description": "Find the Treasure",
-      "components": [{
+    function customizedDefaultSettings() {
+      $scope.uploads = {
+        "background": "",
+        "components": []
+      };
+      $scope.settings.background = "/static/media/applications/treasurehunt/background.jpg";
+      $scope.board = {
+        "width": 4,
+        "height": 4
+      };
+      $scope.components = [{
         "id": 1,
         "name": "Treasure Chest",
         "img": "/static/media/applications/treasurehunt/chest.png",
         "position": {
-          "x": 1162,
-          "y": 389
+          "x": 50,
+          "y": 0
         },
         "size": {
-          "width": 47,
-          "height": 39
+          "height": 50,
+          "width": 35
         },
-        "angle": 0,
-        "$$hashKey": "object:11"
+        "angle": 0
       }, {
         "id": 2,
         "name": "Red Bottle",
         "img": "/static/media/applications/treasurehunt/bottle4.png",
         "position": {
-          "x": 165,
-          "y": 370
+          "x": 50,
+          "y": 50
         },
         "size": {
-          "width": 28,
-          "height": 41
+          "height": 50,
+          "width": 35
         },
-        "angle": 0,
-        "$$hashKey": "object:12"
+        "angle": 0
       }, {
         "id": 3,
         "name": "Green Bottle",
         "img": "/static/media/applications/treasurehunt/bottle2.png",
         "position": {
-          "x": 54,
-          "y": 21
+          "x": 0,
+          "y": 1
         },
         "size": {
-          "width": 23,
-          "height": 32
+          "height": 50,
+          "width": 35
         },
-        "angle": 0,
-        "$$hashKey": "object:13"
+        "angle": 0
       }, {
         "id": 4,
         "name": "Black Bottle",
         "img": "/static/media/applications/treasurehunt/bottle3.png",
         "position": {
-          "x": 26,
-          "y": 249
+          "x": 70,
+          "y": 20
         },
         "size": {
-          "width": 25,
-          "height": 36
+          "height": 50,
+          "width": 35
         },
-        "angle": 0,
-        "$$hashKey": "object:14"
-      }],
-      "form_fields": {
-        "field_id": 1,
-        "field_required": true,
-        "field_title": "score",
-        "field_type": "integer"
-      },
-      "board": {
-        "width": 4,
-        "height": 4
-      },
-      "background": "/static/media/applications/treasurehunt/background.jpg",
-      "heading": "Treasure Hunt"
-    };
-    $scope.board = $scope.settings.board;
-    $scope.components = $scope.settings.components;
+        "angle": 0
+      }];
+
+      treasureHuntAppService.pushComponents($scope.components);
+    }
+    $scope.settings = settings;
+    customizedDefaultSettings();
 
 
 
-    treasureHuntAppService.initBoard($scope.board, $scope.components);
-    // treasureHuntAppService.putComponentsOnBoard($scope.components);
-    $scope.tiles = treasureHuntAppService.getTiles();
-
-    $scope.tileClicked = function tileClicked(tile) {
-      if (tile.hasComponent) {
-        treasureHuntAppService.removeComponentFromBoard(tile);
-      }
-    };
 
     $scope.backgroundStyle = {
       "background-size": 'cover',

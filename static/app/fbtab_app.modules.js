@@ -9,6 +9,7 @@
         'aprcotApp.campaign.controllers',
         'aprcotApp.application.controllers',
         'aprcotApp.application.services',
+        'aprcotApp.application.directives',
         'aprcotApp.common.filters',
         'aprcotApp.analytics.controllers',
         'aprcotApp.analytics.services',
@@ -48,6 +49,8 @@
 
     angular.module('aprcotApp.application.services', []);
     angular.module('aprcotApp.application.controllers', []);
+    angular.module('aprcotApp.application.directives', []);
+
 
     angular.module('aprcotApp.directives.fieldDirective', []);
     angular.module('aprcotApp.directives.formDirective', []);

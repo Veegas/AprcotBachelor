@@ -6,91 +6,92 @@
       // applicationModule.controller('createTreasureHuntAppController', function($scope,
       // settings, treasureHuntAppService) {
 
-
+      $scope.settings = {};
       /* This is because the editor for now is a seperate route, once linked with the app route
        only settings to the function and uncomment default settings*/
       CampaignUtils.getDefaultSettings('22').then(function(settings) {
         $scope.settings = settings;
-
-
-
-        /*Default Demo Settings*/
-
-        /*      $scope.backgroundImage = $scope.settings.background;
-                $scope.board = settings.board;
-                $scope.components = settings.components;
-        */
-        treasureHuntAppService.initBoard($scope.board, $scope.components);
-        $scope.tiles = treasureHuntAppService.getTiles();
-
+        customizedDefaultSettings();
+      //
+      //
+      //
+      //   /*Default Demo Settings*/
+      //
+      //   /*      $scope.backgroundImage = $scope.settings.background;
+      //           $scope.board = settings.board;
+      //           $scope.components = settings.components;
+      //   */
+      //   // treasureHuntAppService.initBoard($scope.board, $scope.components);
+      //   // $scope.tiles = treasureHuntAppService.getTiles();
+      //
       });
 
+      function customizedDefaultSettings() {
+        $scope.uploads = {
+          "background": "",
+          "components": []
+        };
+        $scope.settings.background = "/static/media/applications/treasurehunt/background.jpg";
+        $scope.board = {
+          "width": 4,
+          "height": 4
+        };
+        $scope.components = [{
+          "id": 1,
+          "name": "Treasure Chest",
+          "img": "/static/media/applications/treasurehunt/chest.png",
+          "position": {
+            "x": 50,
+            "y": 0
+          },
+          "size": {
+            "height": 50,
+            "width": 35
+          },
+          "angle": 0
+        }, {
+          "id": 2,
+          "name": "Red Bottle",
+          "img": "/static/media/applications/treasurehunt/bottle4.png",
+          "position": {
+            "x": 50,
+            "y": 50
+          },
+          "size": {
+            "height": 50,
+            "width": 35
+          },
+          "angle": 0
+        }, {
+          "id": 3,
+          "name": "Green Bottle",
+          "img": "/static/media/applications/treasurehunt/bottle2.png",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "size": {
+            "height": 50,
+            "width": 35
+          },
+          "angle": 0
+        }, {
+          "id": 4,
+          "name": "Black Bottle",
+          "img": "/static/media/applications/treasurehunt/bottle3.png",
+          "position": {
+            "x": 70,
+            "y": 20
+          },
+          "size": {
+            "height": 50,
+            "width": 35
+          },
+          "angle": 0
+        }];
 
-
-      $scope.uploads = {
-        "background": "",
-        "components": []
-      };
-
-
-      $scope.backgroundImage = "/static/media/applications/treasurehunt/background.jpg";
-      $scope.board = {
-        "width": 4,
-        "height": 4
-      };
-      $scope.components = [{
-        "id": 1,
-        "name": "Treasure Chest",
-        "img": "/static/media/applications/treasurehunt/chest.png",
-        "position": {
-          "x": 50,
-          "y": 0
-        },
-        "size": {
-          "height": 50,
-          "width": 35
-        },
-        "angle": 0
-      }, {
-        "id": 2,
-        "name": "Red Bottle",
-        "img": "/static/media/applications/treasurehunt/bottle4.png",
-        "position": {
-          "x": 15,
-          "y": 50
-        },
-        "size": {
-          "height": 50,
-          "width": 35
-        },
-        "angle": 0
-      }, {
-        "id": 3,
-        "name": "Green Bottle",
-        "img": "/static/media/applications/treasurehunt/bottle2.png",
-        "position": {
-          "x": 0,
-          "y": 1
-        },
-        "size": {
-          "height": 50,
-          "width": 35
-        },
-        "angle": 0
-      }, {
-        "id": 4,
-        "name": "Black Bottle",
-        "img": "/static/media/applications/treasurehunt/bottle3.png",
-        "position": {
-          "x": 70,
-          "y": 20
-        },
-        "size": {
-          "height": 50,
-          "width": 35
-        },
-        "angle": 0
-      }];
+        treasureHuntAppService.pushComponents($scope.components);
+      }
 
 
 
@@ -100,7 +101,7 @@
 
       $scope.backgroundSize = {
         "background-size": backgroundSize(),
-        "background-image": 'url(' + $scope.backgroundImage + ')'
+        "background-image": 'url(' + $scope.settings.background + ')'
       };
 
 
@@ -119,27 +120,31 @@
           target: target
         };
         console.log("DropComplete: ", DropComplete);
-        // var tempComponent = JSON.parse(JSON.stringify(source.component));
-        // // console.log("tempComponent: ", tempComponent);
-        // tempComponent.position.x = target.x;
-        // tempComponent.position.y = target.y;
-        //
-        // $scope.components.push(tempComponent);
-        // treasureHuntAppService.putComponentsOnBoard($scope.components);
-        //
-        //
-        // // console.log($scope.components);
-        //   $scope.findOccupiedTiles();
+        console.log("$SCOPE CANVAS", $scope.canvas);
+        console.log("component: ", $scope.components[0]);
+        var positionX = Math.floor(event.x - $scope.canvas._offset.left);
+        var positionY = Math.floor(event.y - $scope.canvas._offset.top);
+        var percentageX = Math.floor((positionX / $scope.canvas.width) * 100);
+        var percentageY = Math.floor((positionY / $scope.canvas.height) * 100);
+        var newComponent = {
+            position: {
+              x: percentageX,
+              y: percentageY
+            },
+            angle: 0,
+            id: source.id,
+            img: source.img,
+            size: {
+              width: 35,
+              height: 50
+            }
+        };
+
+        $scope.components.push(newComponent);
+        treasureHuntAppService.pushComponents($scope.components);
+        $scope.$apply();
       };
 
-      $scope.findOccupiedTiles = function findOccupiedTiles() {
-        var occupied = $scope.tiles.filter(function(tile) {
-          return !_.isEmpty(tile.component);
-        });
-        console.log("occupied: ", occupied);
-
-        // console.log("lodash: ", _);
-      };
 
       // $scope.onDragComplete = function onDragComplete(source, event, target) {
       //   // console.log("event DragComplete: ", event);
@@ -154,10 +159,6 @@
       //   console.log("DragComplete: ", DragComplete);
       // };
 
-      $scope.$watch('board', function(newBoard) {
-        treasureHuntAppService.initBoard(newBoard, $scope.components);
-        $scope.tiles = treasureHuntAppService.getTiles();
-      }, true);
 
 
 
@@ -169,7 +170,7 @@
 
         reader.onload = function(event) {
           var url = event.target.result;
-          $scope.backgroundImage = url;
+          $scope.settings.background = url;
           $scope.$apply();
         };
 
@@ -184,16 +185,12 @@
           var url = event.target.result;
           var component = {
             "id": $scope.components.length + 1,
-            "img": url,
-            "position": {
-              "x": 0,
-              "y": 0
-            }
+            "img": url
           };
+          // $scope.uploads.components.push(component);
           $scope.components.push(component);
+          treasureHuntAppService.pushComponents($scope.components);
           $scope.$apply();
-          $scope.drawComponents($scope.components);
-          console.log($scope.components);
         };
       };
 
@@ -206,8 +203,10 @@
       };
 
       $scope.saveSettings = function saveSettings() {
+        $scope.settings.components = $scope.components;
         var settings = $scope.settings;
         settings.form_fields = settings.form_fields[0];
+        console.log("CAMPAIGN SETTINGS TO BE SAVE: ", settings);
         CampaignUtils.createCampaign(settings, settings.application_id);
 
       };
