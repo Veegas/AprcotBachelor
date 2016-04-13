@@ -44,6 +44,7 @@
         var img = new Image(); // Create new img element
         img.src = component.img;
 
+
         var imgLeftPixels = Math.floor((canvas.width * component.position.x) / 100);
         var imgTopPixels = Math.floor((canvas.height * component.position.y) / 100);
         img.onload = function() {
@@ -71,21 +72,20 @@
       function treasureHuntEditorHandlers(canvas) {
         $rootScope.$on("component-added", function (event, args) {
           drawComponents(canvas, args.diffComponents);
-        })
+        });
 
-        // $scope.$watch('serviceComponents', function(newComponents, oldComponents) {
-        //   debugger;
-        //   var difference = _.difference(newComponents, oldComponents);
-        //   console.log("difference components: ", difference);
-        //   drawComponents(canvas, difference);
-        // });
         $scope.$watch('settings.background', function(newImage) {
           setCanvasBackground(canvas, newImage);
         });
       }
 
       function treasureHuntPlayableHandlers(canvas) {
-        drawComponents(canvas, $scope.components);
+        $rootScope.$on("component-added", function (event, args) {
+          console.log("DIRECTIVE GET COMPONETS SERVICE: ");
+          drawComponents(canvas, args.diffComponents);
+        });
+
+
         canvas.on('mouse:down', function(options) {
           if (!_.isUndefined(options.target)) {
             console.log("OPTIONS TARGET: ", options.target);
@@ -102,7 +102,7 @@
 
         $scope.$on("treasurehunt-ended", function () {
           alert("You've won");
-        })
+        });
       }
 
 

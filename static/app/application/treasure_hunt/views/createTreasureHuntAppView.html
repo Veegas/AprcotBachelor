@@ -1,6 +1,15 @@
 <div class="treasure-hunt-editor">
 
   <div class="left-editor-menu col-md-2">
+    <div class="application-details">
+      <img class="application-img" ng-src="/static/media/applications/demos/{{ identifier }}.png" alt="">
+      <div class="application-details-heading text-center">
+        <h3> {{settings.heading}}</h3>
+      </div>
+      <div class="application-details-description text-center">
+        <p> {{settings.description}}</p>
+      </div>
+    </div>
     <ul class="editor-menu">
       <li class="menu-item">
         <a class="menu-link" ng-click="showBackgroundMenu()">Background</a>

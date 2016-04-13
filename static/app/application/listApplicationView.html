@@ -1,13 +1,20 @@
 <div class="row">
-    <div class="col-lg-4" ng-repeat="app in applications">
-       <h2>{{ app.name }}</h2>
-       <img src="/static/media/applications/demos/{{ app.identifier }}.png" width="200" height="200"> </img>
-       <p>
-          <button class="btn btn-primary" ng-click="showDemo(app.id, app.identifier)" role="button">Demo</button>
-          <button class="btn btn-primary" ng-click="createCampaign(app.id, app.identifier, {})" ng-if="isLoggedIn" role="button">Create</button>
-       </p>
-     </div>
-     <div class="col-lg-8">
-        <img src="/media/aprcot/toBeContinued.jpg" style="width:100%;">
-     </div>
+  <div class="container">
+    <div class="col-md-6" ng-repeat="app in applications">
+      <div class="application-thumbnail">
+        <img class="application-img" ng-src="/static/media/applications/demos/{{ app.identifier }}.png" alt="">
+        <div class="application-content">
+          <div class="application-header text-center">
+            <h1>{{ app.name }}</h1>
+          </div>
+          <div class="application-body text-center">
+            <p>
+              <button class="btn btn-lg btn-primary" ng-click="showDemo(app.id, app.identifier)" role="button">Demo</button>
+              <button class="btn btn-lg btn-success" ng-click="createCampaign(app.id, app.identifier, {})" ng-if="isLoggedIn" role="button">Create</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

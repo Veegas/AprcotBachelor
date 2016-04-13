@@ -75,11 +75,15 @@
 
       treasureHuntAppService.pushComponents($scope.components);
     }
-    $scope.settings = settings;
-    customizedDefaultSettings();
 
-
-
+      function getServerSettings() {
+          $scope.components = $scope.settings.components;
+          console.log("components: ", $scope.components);
+          treasureHuntAppService.pushComponents($scope.components);
+      }
+        $scope.settings = settings;
+        getServerSettings();
+        // customizedDefaultSettings();
 
     $scope.backgroundStyle = {
       "background-size": 'cover',

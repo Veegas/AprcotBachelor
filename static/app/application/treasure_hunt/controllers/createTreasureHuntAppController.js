@@ -2,16 +2,16 @@
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.controllers');
   applicationModule.controller('createTreasureHuntAppController',
-    function($scope, CampaignUtils, treasureHuntAppService, $timeout) {
+    function($rootScope, $scope, CampaignUtils, treasureHuntAppService, $timeout) {
       // applicationModule.controller('createTreasureHuntAppController', function($scope,
       // settings, treasureHuntAppService) {
-
       $scope.settings = {};
       /* This is because the editor for now is a seperate route, once linked with the app route
        only settings to the function and uncomment default settings*/
       CampaignUtils.getDefaultSettings('22').then(function(settings) {
         $scope.settings = settings;
         customizedDefaultSettings();
+        $scope.identifier = $rootScope.APPLICATION_DATA[settings.application_id].identifier;
       //
       //
       //

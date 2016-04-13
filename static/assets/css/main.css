@@ -1,3 +1,48 @@
+.application-thumbnail {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+}
+.application-thumbnail:hover .application-img {
+  transform: scale(10);
+  opacity: 0;
+}
+.application-thumbnail:hover .application-content {
+  opacity: 1;
+  transform: scale(1);
+}
+.application-img {
+  display: block;
+  position: relative;
+  width: 100%;
+  transition: all 0.7s ease-in-out;
+}
+.application-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(98, 98, 98, 0.8);
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+.application-header {
+  color: #F8F8F8;
+  top: 20%;
+  position: absolute;
+  font-weight: bold;
+  left: 0;
+  right: 0;
+}
+.application-body {
+  bottom: 20%;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
 #form-content .form-horizontal {
   padding: 10px 15px;
 }
@@ -50,6 +95,7 @@
   height: 100%;
   border-right: 1px solid #c6d0da;
   padding: 0;
+  padding-top: 1%;
 }
 .left-editor-menu::after {
   display: table;
@@ -184,7 +230,6 @@
   font-size: 1.25em;
   font-weight: 700;
   color: #5f6f81;
-  background-color: white;
   display: inline-block;
   padding: 1% 5%;
   border: 1px solid #ccc;
@@ -203,6 +248,11 @@
   cursor: pointer;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+body {
+  background-color: #e7e7e7;
+  font-family: 'Lato', sans-serif;
+}
 .test2 {
   float: right;
   color: red;
@@ -213,6 +263,32 @@
 #loading-bar-spinner .spinner-icon {
   border-top-color: #f4ae10;
   border-left-color: #f4ae10;
+}
+.btn-success {
+  background-color: #8bcf9a;
+  border-color: #8bcf9a;
+  color: #F8F8F8;
+}
+.btn-primary {
+  background-color: #80C5B9;
+  border-color: #80C5B9;
+  color: #F8F8F8;
+}
+.btn-danger {
+  background-color: #D3455B;
+  border-color: #D3455B;
+  color: #F8F8F8;
+}
+.btn-warning {
+  background-color: #EFC557;
+  border-color: #EFC557;
+  color: #F8F8F8;
+}
+.btn-anchor {
+  color: #F8F8F8;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #626262 !important;
 }
 
 .contact-title h1 {

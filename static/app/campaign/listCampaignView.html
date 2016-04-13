@@ -7,11 +7,11 @@
             <button class="btn btn-danger" ng-click="deleteCampaign(campaign.id)" role="button">Delete</button>
             <button class="btn btn-primary" ng-click="editCampaign(campaign.id, campaign.application)" role="button">Edit</button>
             <button class="btn btn-warning" ng-click="" role="button">
-              <a ui-sref="index.analytics({ campaignId: campaign.id })">Analytics</a>
+              <a class="btn-anchor" ui-sref="index.analytics({ campaignId: campaign.id })">Analytics</a>
             </button>
             <button class="btn btn-success" ng-click="previewCampaign(campaign.id, campaign.application)" role="button">Preview</button>
             <button class="btn btn-success" ng-click="showCampaignResults(campaign.id)" role="button">
-              <a ui-sref="index.results({ campaignId: campaign.id})">Results</a></button>
+              <a class="btn-anchor" ui-sref="index.results({ campaignId: campaign.id})">Results</a></button>
          </p>
        </div>
   </div>

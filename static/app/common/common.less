@@ -1,1 +1,55 @@
-.test2 { float: right; color: red; } #loading-bar { .bar { background: #f4ae10; } } #loading-bar-spinner { .spinner-icon { border-top-color: #f4ae10; border-left-color: #f4ae10; } }
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+@nice-green: #8bcf9a;
+@nice-red: #D3455B;
+@nice-blue: #80C5B9;
+@nice-yellow: #EFC557;
+@nice-dark-brown: #4D4943;
+@nice-white: #F8F8F8;
+@nice-grey: rgb(98, 98, 98);
+body {
+  background-color: #e7e7e7;
+  font-family: 'Lato', sans-serif;
+}
+.test2 {
+  float: right;
+  color: red;
+}
+#loading-bar {
+  .bar {
+    background: #f4ae10;
+  }
+}
+#loading-bar-spinner {
+  .spinner-icon {
+    border-top-color: #f4ae10;
+    border-left-color: #f4ae10;
+  }
+}
+
+.btn-success {
+  background-color: @nice-green;
+  border-color: @nice-green;
+  color:@nice-white;
+}
+.btn-primary {
+  background-color: @nice-blue;
+  border-color: @nice-blue;
+  color: @nice-white;
+}
+.btn-danger {
+  background-color: @nice-red;
+  border-color: @nice-red;
+  color: @nice-white;
+}
+.btn-warning {
+  background-color: @nice-yellow;
+  border-color: @nice-yellow;
+  color: @nice-white;
+}
+.btn-anchor {
+  color: @nice-white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: @nice-grey !important;
+}
