@@ -16,9 +16,9 @@
     // $scope.backgroundColors = ['#AEEBFD','#998BFA', '#C290FB',  '#EBAFB0',  '#F5CFA9',  '#FEF3BB',  '#DAE8B6'];
     // $scope.backgroundColors = ["#88E1FB","#84B3FC","#654FF9","#A557F9","#D270A6","#EA977E","#E38587","#F0B77A","#F4C87C","#FDED99","#F3EF94","#C6DD8F"];
     // $scope.backgroundColors = ["#88E1FB","#84B3FC","#A557F9","#EA977E","#F0B77A","#FDED99","#C6DD8F"];
-    $scope.backgroundColors = ["#E35450","#EB7655","#EFA25C","#E7C468","#52D39A","#50BFD3","#4A97DD"];
+    // $scope.backgroundColors = ["#E35450","#EB7655","#EFA25C","#E7C468","#52D39A","#50BFD3","#4A97DD"];
 
-    $scope.icons = ["fa-map-marker", "fa-cogs", "fa-th", " fa-shopping-cart", "fa-puzzle-piece", " fa-map", "fa-heart-o"];
+    // $scope.icons = ["fa-map-marker", "fa-cogs", "fa-th", " fa-shopping-cart", "fa-puzzle-piece", " fa-map", "fa-heart-o"];
 
     // $scope.$watch('applications', function(applications) {
     //   console.log("$scope.applications: ", applications);
@@ -31,17 +31,17 @@
     //   }
     // });
 
-      var objectIndex = 0;
-    _.object(_.map($scope.applications, function(app, key) {
-      // var randomColorIndex = Math.floor(Math.random() * $scope.backgroundColors.length);
-      app.backgroundColor = $scope.backgroundColors[objectIndex];
-      app.icon = $scope.icons[objectIndex];
-      objectIndex++;
-      console.log("RANDOM COLOR INDEX: ", key);
-      // console.log("$scope.backgroundColors: ", $scope.backgroundColors);
-      // $scope.backgroundColors.splice(randomColorIndex, 1);
-      return app;
-    }));
+    //   var objectIndex = 0;
+    // _.object(_.map($scope.applications, function(app, key) {
+    //   // var randomColorIndex = Math.floor(Math.random() * $scope.backgroundColors.length);
+    //   app.backgroundColor = $scope.backgroundColors[objectIndex];
+    //   app.icon = $scope.icons[objectIndex];
+    //   objectIndex++;
+    //   console.log("RANDOM COLOR INDEX: ", key);
+    //   // console.log("$scope.backgroundColors: ", $scope.backgroundColors);
+    //   // $scope.backgroundColors.splice(randomColorIndex, 1);
+    //   return app;
+    // }));
 
     console.log("$scope.applications: ", $scope.applications);
 

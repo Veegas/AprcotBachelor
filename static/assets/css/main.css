@@ -16,7 +16,6 @@
   display: block;
   position: relative;
   width: 100%;
-  padding: 10%;
   transition: all 0.7s ease-in-out;
 }
 .application-content {
