@@ -31,6 +31,8 @@
           "background": "",
           "components": []
         };
+        $scope.name = "Treasure Hunt";
+        $scope.heading = "WHAT THE HELL MAN";
         $scope.settings.background = "/static/media/applications/treasurehunt/background.jpg";
         $scope.board = {
           "width": 4,
@@ -204,9 +206,11 @@
 
       $scope.saveSettings = function saveSettings() {
         $scope.settings.components = $scope.components;
+
         var settings = $scope.settings;
         settings.form_fields = settings.form_fields[0];
         console.log("CAMPAIGN SETTINGS TO BE SAVE: ", settings);
+        debugger;
         CampaignUtils.createCampaign(settings, settings.application_id);
 
       };

@@ -9,6 +9,7 @@
             var campaignPromise = Campaign.query().$promise;
             campaignPromise.then(function(response) {
                 $scope.campaigns = response;
+                console.log("Campaign Query Response: ", response);
             });
         };
         getCampaigns();

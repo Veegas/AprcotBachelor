@@ -1,8 +1,10 @@
 <div class="row">
-  <div class="container">
     <div class="col-md-6" ng-repeat="app in applications">
       <div class="application-thumbnail">
-        <img class="application-img" ng-src="/static/media/applications/demos/{{ app.identifier }}.png" alt="">
+        <!-- <img class="application-img" ng-src="/static/media/applications/demos/{{ app.identifier }}.png" alt=""> -->
+        <div class="application-img text-center" ng-style="{'background-color': app.backgroundColor}">
+          <i class="fa applcation-logo" ng-class="app.icon" aria-hidden="true"></i>
+        </div>
         <div class="application-content">
           <div class="application-header text-center">
             <h1>{{ app.name }}</h1>
@@ -16,5 +18,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>

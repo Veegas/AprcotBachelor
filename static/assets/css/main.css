@@ -16,6 +16,7 @@
   display: block;
   position: relative;
   width: 100%;
+  padding: 10%;
   transition: all 0.7s ease-in-out;
 }
 .application-content {
@@ -41,6 +42,11 @@
   position: absolute;
   left: 0;
   right: 0;
+}
+.applcation-logo {
+  color: #F8F8F8;
+  font-size: 20em;
+  text-align: center;
 }
 
 #form-content .form-horizontal {

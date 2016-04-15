@@ -80,6 +80,7 @@
       }
 
       function treasureHuntPlayableHandlers(canvas) {
+        drawComponents(canvas, $scope.components);
         $rootScope.$on("component-added", function (event, args) {
           console.log("DIRECTIVE GET COMPONETS SERVICE: ");
           drawComponents(canvas, args.diffComponents);

@@ -18,6 +18,7 @@
                 var campaignObj = new Campaign({
                     application: applicationId
                 });
+                console.log("CREATE CAMPAING SETTINGS: ", settings);
                 var campaignSettingsObj = new CampaignSettings(settings);
                 campaignObj.$save().then(function() {
                     campaignSettingsObj['campaign_id'] = campaignObj.id;

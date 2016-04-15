@@ -10,15 +10,7 @@
     // $scope.board = settings.board;
     // $scope.components = settings.components;
     function customizedDefaultSettings() {
-      $scope.uploads = {
-        "background": "",
-        "components": []
-      };
       $scope.settings.background = "/static/media/applications/treasurehunt/background.jpg";
-      $scope.board = {
-        "width": 4,
-        "height": 4
-      };
       $scope.components = [{
         "id": 1,
         "name": "Treasure Chest",
@@ -77,13 +69,13 @@
     }
 
       function getServerSettings() {
-          $scope.components = $scope.settings.components;
-          console.log("components: ", $scope.components);
+          $scope.components = settings.components;
+          console.log("components: ", settings.components);
           treasureHuntAppService.pushComponents($scope.components);
       }
         $scope.settings = settings;
-        getServerSettings();
-        // customizedDefaultSettings();
+        // getServerSettings();
+        customizedDefaultSettings();
 
     $scope.backgroundStyle = {
       "background-size": 'cover',

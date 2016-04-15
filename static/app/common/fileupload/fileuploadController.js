@@ -4,6 +4,7 @@
     fileModule.controller('fileuploadController', function($scope, Upload, Files, $timeout, $modalInstance) {
 
         $scope.uploadFiles = function(file, errFiles) {
+            console.log("UPLOAD FILES: ", file);
             $scope.file = file;
             $scope.errFile = errFiles && errFiles[0];
             if (file) {

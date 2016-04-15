@@ -13,11 +13,6 @@
             diffComponents: diffComponents,
             newComponents: components
           });
-          console.log("COMPONENTS BROADCASTED: ",{
-            oldComponents: oldComponents,
-            diffComponents: diffComponents,
-            newComponents: components
-          });
         }
       };
   });
