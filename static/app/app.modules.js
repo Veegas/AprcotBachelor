@@ -42,6 +42,7 @@
         'angular-bind-html-compile',
         'ngFileUpload',
         'ngDraggable',
+        'ngImgur'
     ]);
 
     // angular.module('aprcotApp.common.controllers.headerController', []);

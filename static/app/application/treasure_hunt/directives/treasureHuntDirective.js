@@ -68,9 +68,16 @@
         });
       }
 
+      function removeComponentFromCanvas(component) {
+        (function animate() {
+          component.scale += 1;
+          $scope.canvas.renderAll();
+          fabric.util.requestAnimFrame(animate);
+        })();
+      }
 
       function treasureHuntEditorHandlers(canvas) {
-        $rootScope.$on("component-added", function (event, args) {
+        $rootScope.$on("component-added", function(event, args) {
           drawComponents(canvas, args.diffComponents);
         });
 
@@ -81,7 +88,7 @@
 
       function treasureHuntPlayableHandlers(canvas) {
         drawComponents(canvas, $scope.components);
-        $rootScope.$on("component-added", function (event, args) {
+        $rootScope.$on("component-added", function(event, args) {
           console.log("DIRECTIVE GET COMPONETS SERVICE: ");
           drawComponents(canvas, args.diffComponents);
         });
@@ -94,14 +101,15 @@
               _.findWhere($scope.components, {
                 position: options.target.component.position
               }));
-            options.target.remove();
+            // options.target.remove()
+            removeComponentFromCanvas(options.target);
             if (_.isEmpty($scope.components)) {
               $scope.$broadcast("treasurehunt-ended");
             }
           }
         });
 
-        $scope.$on("treasurehunt-ended", function () {
+        $scope.$on("treasurehunt-ended", function() {
           alert("You've won");
         });
       }

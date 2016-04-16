@@ -2,7 +2,7 @@
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.controllers');
   applicationModule.controller('createTreasureHuntAppController',
-    function($rootScope, $scope, CampaignUtils, treasureHuntAppService, $timeout) {
+    function($rootScope, $scope, CampaignUtils, treasureHuntAppService, $timeout, imgur ) {
       // applicationModule.controller('createTreasureHuntAppController', function($scope,
       // settings, treasureHuntAppService) {
       $scope.settings = {};
@@ -166,17 +166,9 @@
 
       // render the image in our view
       $scope.renderBackground = function renderBackground(file) {
-
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = function(event) {
-          var url = event.target.result;
-          $scope.settings.background = url;
-          $scope.$apply();
-        };
-
-
+        imgur.upload(file).then(function then(model) {
+          console.log('Your adorable cat be here: ' + model.link);
+        });
       };
       $scope.renderComponents = function renderComponents(file) {
 

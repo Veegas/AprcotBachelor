@@ -4,12 +4,12 @@
     fileModule.controller('fileuploadController', function($scope, Upload, Files, $timeout, $modalInstance) {
 
         $scope.uploadFiles = function(file, errFiles) {
-            console.log("UPLOAD FILES: ", file);
+            console.log("UPLOAD FILES: ", file, "ERRORS: ", errFiles);
             $scope.file = file;
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
-                    'url': '/api/images/',
+                    'url': 'https://guc.aprcot.com/api/images/',
                     'uploaded_file': file,
                     'data': {
                         'uploaded_file': file,
