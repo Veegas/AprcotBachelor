@@ -308,11 +308,21 @@
   background-color: @nice-peach;
   color: @nice-white;
 }
-.menu-orange:hover {
+.menu-orange-active {
   background-color: @nice-orange;
-  color: @nice-white;
+  .menu-link {
+    color: @nice-white;
+  }
+}
+.menu-orange:hover {
+  .menu-orange-active;
+}
+.menu-yellow-active {
+  background-color: @nice-yellow;
+  .menu-link {
+    color: @nice-white;
+  }
 }
 .menu-yellow:hover {
-  background-color: @nice-yellow;
-  color: @nice-white;
+  .menu-yellow-active;
 }

@@ -369,12 +369,28 @@
   background-color: #DB917E;
   color: #F8F8F8;
 }
+.menu-orange-active {
+  background-color: #ECB685;
+}
+.menu-orange-active .menu-link {
+  color: #F8F8F8;
+}
 .menu-orange:hover {
   background-color: #ECB685;
+}
+.menu-orange:hover .menu-link {
+  color: #F8F8F8;
+}
+.menu-yellow-active {
+  background-color: #E7CE8E;
+}
+.menu-yellow-active .menu-link {
   color: #F8F8F8;
 }
 .menu-yellow:hover {
   background-color: #E7CE8E;
+}
+.menu-yellow:hover .menu-link {
   color: #F8F8F8;
 }
 

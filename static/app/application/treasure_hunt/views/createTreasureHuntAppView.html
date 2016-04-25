@@ -21,10 +21,10 @@
           <input class="text-center" type="text" ng-model="settings.description" placeholder="{{settings.description}}">
         </div>
       </div>
-      <li class="menu-item menu-orange">
+      <li class="menu-item menu-orange" ng-class="menuBackgroundColor()">
         <a class="menu-link" ng-click="showBackgroundMenu()">Background</a>
       </li>
-      <li class="menu-item menu-yellow">
+      <li class="menu-item menu-yellow" ng-class="menuComponentColor()">
         <a class="menu-link" ng-click="showComponentsMenu()">Components</a>
       </li>
       <li class="menu-item">

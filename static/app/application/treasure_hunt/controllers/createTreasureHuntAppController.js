@@ -252,6 +252,21 @@
         $scope.componentsMenu = false;
       };
 
+      $scope.menuBackgroundColor = function menuBackgroundColor() {
+        if (!$scope.componentsMenu) {
+          return "menu-orange-active";
+        } else {
+          return '';
+        }
+      };
+      $scope.menuComponentColor = function menuComponentColor() {
+        if ($scope.componentsMenu) {
+          return "menu-yellow-active";
+        } else {
+          return '';
+        }
+      };
+
       $scope.showComponentsMenu = function showComponentsMenu() {
         $scope.componentsMenu = true;
       };
