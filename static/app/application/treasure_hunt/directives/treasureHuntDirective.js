@@ -4,7 +4,7 @@
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.directives');
 
-  applicationModule.directive('treasureHuntDirective', function($timeout, $rootScope, treasureHuntAppService) {
+  applicationModule.directive('treasureHuntDirective', function($timeout, $rootScope, treasureHuntAppService, $filter) {
 
 
 
@@ -15,6 +15,11 @@
       } else {
         editor = true;
       }
+
+      $scope.$watch('components', function (components) {
+        treasureHuntAppService.pushComponents(components);
+      }, true);
+
 
       function canvasInit() {
         var canvas = new fabric.Canvas(attrs.id, {
@@ -30,7 +35,6 @@
       }
 
       function setCanvasBackground(canvas, backgroundImage) {
-        console.log("backgroundImage: ", backgroundImage);
         canvas.setBackgroundImage(backgroundImage, canvas.renderAll.bind(canvas), {
           width: canvas.width,
           height: canvas.height,
@@ -63,6 +67,7 @@
       }
 
       function drawComponents(canvas, components) {
+        canvas.clear();
         components.forEach(function(component) {
           addComponentToCanvas(canvas, component);
         });
@@ -70,21 +75,70 @@
 
 
       function treasureHuntEditorHandlers(canvas) {
-        $rootScope.$on("component-added", function (event, args) {
-          drawComponents(canvas, args.diffComponents);
-        });
+        // $rootScope.$on("component-added", function(event, args) {
+        //   drawComponents(canvas, args.diffComponents);
+        // });
 
         $scope.$watch('settings.background', function(newImage) {
           setCanvasBackground(canvas, newImage);
         });
+
+        $scope.$watch(
+          function() {
+            return treasureHuntAppService.getComponents();
+          },
+          function(components) {
+            $scope.components = components;
+            drawComponents(canvas, $scope.components);
+          },
+          true
+        );
+
+        canvas.on('object:modified', function(e) {
+          var activeObject = e.target;
+          var activeComponent = activeObject.component;
+          var found = $filter('filter')($scope.components, {
+            id: activeComponent.id
+          }, true)[0];
+          found.position.x = pixelsToPercentage(activeObject.left, canvas.getWidth());
+          found.position.y = pixelsToPercentage(activeObject.top, canvas.getHeight());
+          found.size.width = scaleToOriginal(activeObject.width, activeObject.scaleX);
+          found.size.height = scaleToOriginal(activeObject.height, activeObject.scaleY);
+          found.angle = Math.floor(activeObject.angle);
+          treasureHuntAppService.pushComponents($scope.components);
+          $rootScope.safeApply();
+
+        });
+
+        canvas.on('object:selected', function (e) {
+          $scope.activeComponent = e.target.component;
+          treasureHuntAppService.pushActiveComponent(e.target.component);
+          $rootScope.safeApply();
+        });
+
+      }
+
+
+      function pixelsToPercentage(pixels, total) {
+        var percent = (pixels / total) * 100;
+        return Math.floor(percent);
+      }
+
+      function scaleToOriginal(original, scale) {
+        return Math.floor(original * scale);
       }
 
       function treasureHuntPlayableHandlers(canvas) {
-        drawComponents(canvas, $scope.components);
-        $rootScope.$on("component-added", function (event, args) {
-          console.log("DIRECTIVE GET COMPONETS SERVICE: ");
-          drawComponents(canvas, args.diffComponents);
-        });
+        $scope.$watch(
+          function() {
+            return treasureHuntAppService.getComponents();
+          },
+          function(components) {
+            $scope.components = components;
+            drawComponents(canvas, $scope.components);
+          },
+          true
+        );
 
 
         canvas.on('mouse:down', function(options) {
@@ -94,14 +148,16 @@
               _.findWhere($scope.components, {
                 position: options.target.component.position
               }));
+            treasureHuntAppService.pushComponents($scope.components);
             options.target.remove();
             if (_.isEmpty($scope.components)) {
               $scope.$broadcast("treasurehunt-ended");
             }
           }
+          $rootScope.safeApply();
         });
 
-        $scope.$on("treasurehunt-ended", function () {
+        $scope.$on("treasurehunt-ended", function() {
           alert("You've won");
         });
       }

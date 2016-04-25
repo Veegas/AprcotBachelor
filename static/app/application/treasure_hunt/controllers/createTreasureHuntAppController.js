@@ -2,7 +2,7 @@
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.controllers');
   applicationModule.controller('createTreasureHuntAppController',
-    function($rootScope, $scope, CampaignUtils, treasureHuntAppService, $timeout) {
+    function($rootScope, $scope, CampaignUtils, treasureHuntAppService, $timeout, imgur, $filter) {
       // applicationModule.controller('createTreasureHuntAppController', function($scope,
       // settings, treasureHuntAppService) {
       $scope.settings = {};
@@ -10,21 +10,29 @@
        only settings to the function and uncomment default settings*/
       CampaignUtils.getDefaultSettings('22').then(function(settings) {
         $scope.settings = settings;
-        customizedDefaultSettings();
+        $scope.components = settings.components;
+        $scope.heading = settings.heading;
+        $scope.name = settings.name;
+        $scope.componentsAddStart = 0;
+        console.log("settings: ", settings);
         $scope.identifier = $rootScope.APPLICATION_DATA[settings.application_id].identifier;
-      //
-      //
-      //
-      //   /*Default Demo Settings*/
-      //
-      //   /*      $scope.backgroundImage = $scope.settings.background;
-      //           $scope.board = settings.board;
-      //           $scope.components = settings.components;
-      //   */
-      //   // treasureHuntAppService.initBoard($scope.board, $scope.components);
-      //   // $scope.tiles = treasureHuntAppService.getTiles();
-      //
+        // customizedDefaultSettings();
+        treasureHuntAppService.pushComponents($scope.components);
+        $scope.$watch( function() {
+            return treasureHuntAppService.getComponents();
+          },
+          function(components) {
+            $scope.components = components;
+          },true);
+        $scope.$watch( function() {
+            return treasureHuntAppService.getActiveComponent();
+          },
+          function(component) {
+            console.log("Active component Changed: ", component);
+            $scope.activeComponent = component;
+          },true);
       });
+
 
       function customizedDefaultSettings() {
         $scope.uploads = {
@@ -91,8 +99,6 @@
           },
           "angle": 0
         }];
-
-        treasureHuntAppService.pushComponents($scope.components);
       }
 
 
@@ -106,14 +112,54 @@
         "background-image": 'url(' + $scope.settings.background + ')'
       };
 
+      $scope.activeComponent = null;
+      // {
+      //   "name":
+      //   "img":
+      //   "position": {
+      //     "x":
+      //     "y":
+      //   },
+      //   "size": {
+      //     "height":
+      //     "width":
+      //   },
+      //   "angle":
+      // };
 
-
-      $scope.tileClicked = function tileClicked(tile) {
-        console.log("Tile Clicked: ", tile);
-        // if (tile.hasComponent) {
-        //   treasureHuntAppService.removeComponentFromBoard(tile);
-        // }
+      $scope.activateComponent = function activateComponent(component) {
+        treasureHuntAppService.pushActiveComponent(component);
+        $scope.activeComponent = component;
       };
+
+      $scope.deleteComponent = function deleteComponent(component) {
+        var found = $filter('filter')($scope.components, {
+          id: component.id
+        }, true);
+
+        $scope.components = _.without($scope.components, found[0]);
+        treasureHuntAppService.pushComponents($scope.components);
+        $rootScope.apply();
+
+        console.log("components to be deleted: ", found);
+        console.log("components deleted: ", $scope.components);
+
+      };
+
+      $scope.confirmComponent = function confirmComponent() {
+        $scope.activeComponent = null;
+      };
+
+      $scope.decideBorderColor = function decideBorderColor(index) {
+        var baseClassName = "component-color-";
+        var colorNumber = index % 4;
+        return baseClassName + colorNumber;
+      };
+
+      $scope.$watch('components', function watchComponents(components) {
+        treasureHuntAppService.pushComponents(components);
+        console.log("components PUSHED TO SERVICE : ", components);
+      }, true);
 
       $scope.onDropComplete = function onDropComplete(source, event, target) {
         var DropComplete = {
@@ -143,8 +189,7 @@
         };
 
         $scope.components.push(newComponent);
-        treasureHuntAppService.pushComponents($scope.components);
-        $scope.$apply();
+        $rootScope.apply();
       };
 
 
@@ -170,30 +215,39 @@
         var reader = new FileReader();
         reader.readAsDataURL(file);
 
+        imgur.upload(file).then(function (image) {
+          $scope.settings.background = image.link;
+          console.log("settings after image uploaded: ", $scope.settings);
+        });
+// To read as data url until promise is resolved
         reader.onload = function(event) {
           var url = event.target.result;
           $scope.settings.background = url;
-          $scope.$apply();
+          $rootScope.apply();
         };
 
 
       };
       $scope.renderComponents = function renderComponents(file) {
-
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = function(event) {
-          var url = event.target.result;
-          var component = {
-            "id": $scope.components.length + 1,
-            "img": url
-          };
-          // $scope.uploads.components.push(component);
-          $scope.components.push(component);
-          treasureHuntAppService.pushComponents($scope.components);
-          $scope.$apply();
-        };
+        imgur.upload(file).then(function (image) {
+            var component = {
+              "id": $scope.components.length + 1,
+              "img": image.link,
+              "position": {
+                x: 50,
+                y: 50
+              },
+              angle: 0,
+              size: {
+                width: 35,
+                height: 50
+              }
+            };
+            // $scope.uploads.components.push(component);
+            $scope.components.push(component);
+            $scope.activeComponent = component;
+            $rootScope.apply();
+        });
       };
 
       $scope.showBackgroundMenu = function showBackgroundMenu() {
@@ -204,13 +258,25 @@
         $scope.componentsMenu = true;
       };
 
+      $scope.componentsMenuPage = function componentsNextMenuPage(item) {
+        if (item < 0) {
+            if ($scope.componentsAddStart > 0) {
+              $scope.componentsAddStart += item;
+            }
+        } else {
+          if ($scope.componentsAddStart + 4 < $scope.components.length) {
+            $scope.componentsAddStart += item;
+          }
+
+        }
+        console.log("componentsAddStart: ", $scope.componentsAddStart);
+      }
+
       $scope.saveSettings = function saveSettings() {
         $scope.settings.components = $scope.components;
 
         var settings = $scope.settings;
         settings.form_fields = settings.form_fields[0];
-        console.log("CAMPAIGN SETTINGS TO BE SAVE: ", settings);
-        debugger;
         CampaignUtils.createCampaign(settings, settings.application_id);
 
       };

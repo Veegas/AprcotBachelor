@@ -3,6 +3,7 @@
   var applicationModule = angular.module('aprcotApp.application.services');
   applicationModule.factory('treasureHuntAppService', function($rootScope) {
       var components = [];
+      var activeComponent = null;
       return {
         pushComponents: function pushComponents(toBePushed) {
           var oldComponents = components;
@@ -13,6 +14,15 @@
             diffComponents: diffComponents,
             newComponents: components
           });
+        },
+        getComponents: function getComponents() {
+          return components;
+        },
+        pushActiveComponent: function pushActiveComponent(component) {
+          activeComponent = component;
+        },
+        getActiveComponent: function getActiveComponent() {
+          return activeComponent;
         }
       };
   });

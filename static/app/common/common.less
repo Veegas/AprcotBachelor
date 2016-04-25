@@ -1,15 +1,46 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
-@nice-green: #8bcf9a;
-@nice-red: #D3455B;
-@nice-blue: #80C5B9;
-@nice-yellow: #EFC557;
-@nice-dark-brown: #4D4943;
-@nice-white: #F8F8F8;
 @nice-grey: rgb(98, 98, 98);
+@nice-green: #7ed7b1;
+@nice-red: #E47F7C;
+@nice-peach: #DB917E;
+@nice-blue: #79AFE0;
+@nice-yellow: #E7CE8E;
+@nice-dark-brown: #4D4943;
+@nice-orange: #ECB685;
+@nice-teal: #7DCAD8;
+@nice-white: #F8F8F8;
+@nice-cream: #e7e7e7;
 body {
-  background-color: #e7e7e7;
+  background-color: @nice-cream;
+  line-height: 1.5;
   font-family: 'Lato', sans-serif;
 }
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.17em;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 0.83em;
+}
+h6 {
+  font-size: 0.75em;
+}
+p {
+  line-height: 1.5;
+  margin: 0 0 1em;
+}
+a,a:visited, a:hover, a:focus {
+  text-decoration: none;
+}
+
 .test2 {
   float: right;
   color: red;
@@ -25,11 +56,10 @@ body {
     border-left-color: #f4ae10;
   }
 }
-
 .btn-success {
   background-color: @nice-green;
   border-color: @nice-green;
-  color:@nice-white;
+  color: @nice-white;
 }
 .btn-primary {
   background-color: @nice-blue;
@@ -49,7 +79,71 @@ body {
 .btn-anchor {
   color: @nice-white;
 }
-
 .navbar-default .navbar-nav > li > a {
   color: @nice-grey !important;
 }
+
+.modal-content {
+  background-color: @nice-cream;
+}
+
+.modal.app {
+  .modal-dialog {
+    width: 75%;
+    height: 90%;
+  }
+  .modal-content {
+    widows: 100%;
+    height: 100%;
+  }
+}
+.edit-in-place span {
+  cursor: pointer;
+}
+
+.edit-in-place input {
+  display: none;
+}
+
+.edit-in-place.active span {
+  display: none;
+}
+
+.edit-in-place.active input {
+  display: inline-block;
+}
+
+.accordion-body {
+  display: none;
+  transition: all 0.5s;
+}
+.accordion-body.active {
+  display: block;
+}
+// .modal {
+//   position: fixed;
+//   top: 12.5%;
+//   right: 12.5%;
+//   bottom: 12.5%;
+//   left: 12.5%;
+//   overflow: hidden;
+// }
+//
+// .modal-dialog {
+//   position: fixed;
+//   margin: 0;
+//   width: 100%;
+//   height: 100%;
+//   padding: 0;
+// }
+//
+// .modal-content {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   border: 2px solid #3c7dcf;
+//   border-radius: 0;
+//   box-shadow: none;
+// }

@@ -3,18 +3,28 @@
   <div class="left-editor-menu col-md-2">
     <div class="application-details">
       <img class="application-img" ng-src="/static/media/applications/demos/{{ identifier }}.png" alt="">
-      <div class="application-details-heading text-center">
-        <h3> {{settings.heading}}</h3>
-      </div>
-      <div class="application-details-description text-center">
-        <p> {{settings.description}}</p>
-      </div>
     </div>
     <ul class="editor-menu">
-      <li class="menu-item">
+      <div accordion-menu>
+        <li class="menu-item menu-red">
+          <a class="menu-link">Header</a>
+        </li>
+        <div class="application-details-body accordion-body">
+          <input class="text-center" type="text" ng-model="settings.heading" placeholder="{{settings.heading}}">
+        </div>
+      </div>
+      <div accordion-menu>
+        <li class="menu-item menu-peach">
+          <a class="menu-link">Description</a>
+        </li>
+        <div class="application-details-body accordion-body">
+          <input class="text-center" type="text" ng-model="settings.description" placeholder="{{settings.description}}">
+        </div>
+      </div>
+      <li class="menu-item menu-orange">
         <a class="menu-link" ng-click="showBackgroundMenu()">Background</a>
       </li>
-      <li class="menu-item">
+      <li class="menu-item menu-yellow">
         <a class="menu-link" ng-click="showComponentsMenu()">Components</a>
       </li>
       <li class="menu-item">
@@ -26,8 +36,20 @@
   <div class="center-editor col-md-8">
 
     <div class="app-editor">
-      <div class="" id="background-img">
-        <canvas id="treasure-canvas" treasure-hunt-directive class="treasure-back" width="100%" height="100%" alt="" ng-bind="components" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)"></canvas>
+      <h1 class="text-center">
+        <edit-in-place value="settings.heading"></edit-in-place>
+      </h1>
+      <div class="" id="retrieve-background">
+        <div class="treasure-canvas-create-container">
+          <canvas id="treasure-canvas" treasure-hunt-directive class="treasure-back" width="100%" height="100%" alt="" ng-bind="components" ng-drop="true" ng-drop-success="onDropComplete($data,$event, tile)"></canvas>
+        </div>
+      </div>
+      <div class="component-list-container">
+        <ul class="component-list">
+          <li class="component-list-item" ng-repeat="component in components">
+            <p class="component-list-item-text">{{component.name}}</p>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -35,17 +57,17 @@
       <form name="treasureForm" class="height-100">
         <div class="background-menu" ng-hide="componentsMenu">
           <div class="form-group col-sm-4">
-            <label>Board Width:
+            <label>Board Width
               <input type="number" class="form-control" name="width" ng-model="board.width" ng-model-options="{ getterSetter: true }"/>
             </label>
           </div>
           <div class="form-group col-sm-4">
-            <label>Board Height:
+            <label>Board Height
               <input type="number" class="form-control" name="height" ng-model="board.height" ng-model-options="{ getterSetter: true }"/>
             </label>
           </div>
           <div class="form-group col-sm-4">
-            <label>Background Image:
+            <label>Background Image
               <input type="file" name="file" id="file" class="inputfile" file-change="renderBackground(uploads.background)" ng-model="uploads.background" ng-model-options="{ getterSetter: true }"/>
               <label for="file">Choose a file</label>
             </label>
@@ -53,19 +75,94 @@
         </div>
 
         <div class="components-menu height-100" ng-show="componentsMenu">
-          <div class="component-item-wrapper col-md-2 height-100"  ng-repeat="component in components">
-            <div class="component-item">
+          <div class="col-md-1 height-100">
+            <div class="btn component-page-icon" ng-click="componentsMenuPage(-1)">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </div>
+          </div>
+          <div class="component-item-wrapper col-md-2 height-100" ng-repeat="(key, component) in components | limitTo: componentsAddStart - components.length | limitTo: 4">
+            <div class="component-item" ng-click="activateComponent(component)">
+              <!-- <div class="component-item" ng-click="activateComponent(component)" ng-class="decideBorderColor(key)"> -->
               <div class="component-img component-aspect " style="background-image: url({{component.img}})" ng-drag="true" ng-drag-data="{{component}}"></div>
             </div>
           </div>
           <div class="col-md-2 height-100 component-item-wrapper">
             <input type="file" name="components" id="components" class="inputfile" file-change="renderComponents(uploads.components)" ng-model="uploads.components" ng-model-options="{ getterSetter: true }" multiple/>
-            <label for="components" class="component-add"> <span class="glyphicon glyphicon-plus component-add-icon"></span></label>
+            <label for="components" class="component-add">
+              <span class="glyphicon glyphicon-plus component-add-icon"></span>
+            </label>
+          </div>
+          <div class="col-md-1 height-100">
+            <div class="btn component-page-icon" ng-click="componentsMenuPage(1)">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </div>
           </div>
         </div>
       </form>
     </div>
 
+  </div>
+
+  <div class="col-md-2 right-editor-menu">
+    <div class="component-details-menu form-group" ng-show="activeComponent">
+      <div class="component-detail-item-wrapper">
+        <div class="component-item component-detail-item">
+          <div class="component-img component-detail-thumbnail" style="background-image: url({{activeComponent.img}})" ng-drag="true" ng-drag-data="{{activeComponent}}"></div>
+        </div>
+      </div>
+      <div class="component-details">
+        <div class="col-md-12">
+          <label for="name">
+            Name
+          </label>
+          <input type="text" ng-model="activeComponent.name" placeholder="{{activeComponent.name}}">
+        </div>
+        <div class="col-md-12">
+          <label for="name">
+            X
+          </label>
+          <input type="number" ng-model="activeComponent.position.x" placeholder="{{activeComponent.position.x}}">
+        </div>
+        <div class="col-md-12">
+          <label for="name">
+            Y
+          </label>
+          <input type="number" ng-model="activeComponent.position.y" placeholder="{{activeComponent.position.y}}">
+        </div>
+        <div class="col-md-12">
+          <label for="name">
+            Width
+          </label>
+          <input type="number" ng-model="activeComponent.size.width" placeholder="{{activeComponent.size.width}}">
+
+        </div>
+        <div class="col-md-12">
+          <label for="name">
+            Height
+          </label>
+          <input type="number" ng-model="activeComponent.size.height" placeholder="{{activeComponent.size.height}}">
+        </div>
+        <div class="col-md-12">
+          <label for="name">
+            Rotation Angle
+          </label>
+          <input type="number" ng-model="activeComponent.angle" placeholder="{{activeComponent.angle}}">
+        </div>
+
+        <div class="col-md-6 top-spacing">
+          <button type="button" class="btn btn-danger width-100" ng-click="deleteComponent(activeComponent)">
+            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col-md-6 top-spacing">
+          <button type="button" class="btn btn-primary width-100" ng-click="confirmComponent()">
+            <i class="fa fa-check fa-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 
 </div>

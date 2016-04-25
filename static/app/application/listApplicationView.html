@@ -10,6 +10,9 @@
             <h1>{{ app.name }}</h1>
           </div>
           <div class="application-body text-center">
+            <h3>
+              {{app.description}}
+            </h3>
             <p>
               <button class="btn btn-lg btn-primary" ng-click="showDemo(app.id, app.identifier)" role="button">Demo</button>
               <button class="btn btn-lg btn-success" ng-click="createCampaign(app.id, app.identifier, {})" ng-if="isLoggedIn" role="button">Create</button>

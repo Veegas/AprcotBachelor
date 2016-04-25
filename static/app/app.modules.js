@@ -3,6 +3,7 @@
     angular.module('aprcotApp', [
         'aprcotApp.common.services',
         'aprcotApp.common.controllers',
+        'aprcotApp.common.directives',
         'aprcotApp.common.fileupload.controllers',
         'aprcotApp.common.fileupload.services',
         'aprcotApp.common.fileupload.directives',
@@ -42,6 +43,7 @@
         'angular-bind-html-compile',
         'ngFileUpload',
         'ngDraggable',
+        'ngImgur'
     ]);
 
     // angular.module('aprcotApp.common.controllers.headerController', []);
@@ -66,6 +68,7 @@
 
     angular.module('aprcotApp.common.services', []);
     angular.module('aprcotApp.common.controllers', []);
+    angular.module('aprcotApp.common.directives', []);
 
     angular.module('aprcotApp.common.fileupload.controllers', []);
     angular.module('aprcotApp.common.fileupload.services', []);

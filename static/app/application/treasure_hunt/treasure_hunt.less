@@ -1,38 +1,75 @@
-@dark-grey: #5f6f81;
-@light-grey: #c6d0da;
+@dark-grey: #815f5f;
+@light-grey: #dac6c6;
+@nice-grey: rgb(98, 98, 98);
+@nice-green: #7ed7b1;
+@nice-red: #E47F7C;
+@nice-peach: #DB917E;
+@nice-blue: #79AFE0;
+@nice-yellow: #E7CE8E;
+@nice-dark-brown: #4D4943;
+@nice-orange: #ECB685;
+@nice-teal: #7DCAD8;
+@nice-white: #F8F8F8;
+@nice-cream: #e7e7e7;
 .treasure-hunt {
   position: relative;
   width: 100%;
-  height: 50vh;
   padding: 1%;
 }
 .treasure-hunt-editor {
   position: relative;
   width: 100%;
   height: 100vh;
+  color: @nice-grey;
+
+  label {
+  	display: block;
+  	padding: 1.5em 0.3em 0.3em 0.2em;
+  	font-size: 1.1em;
+  	text-transform: uppercase;
+  	letter-spacing: 1px;
+  	cursor: pointer;
+  }
+  input,
+  textarea,
+  select {
+  	line-height: 1.5;
+  	font-size: 1.4em;
+  	padding: 5px 10px;
+  	color: @dark-grey;
+    font-style: italic;
+  	display: block;
+  	width: 100%;
+  	background: transparent;
+  }
+  input {
+  	border: 2px solid @light-grey;
+    background-color: @nice-white;
+  }
+}
+.application-details {
+  label {
+    padding: 0;
+  }
 }
 .center-editor {
   height: 100%;
   padding: 0;
 }
 .app-editor {
-  // width: 100%;
   height: 75%;
-  padding: 0 15px;
-  border-right: solid 1px @light-grey;
 }
 .bottom-editor-menu {
   height: 25%;
-  border: 1px solid @light-grey;
-  border-left: 0;
-  border-bottom: 0;
+  border-top: 1px solid @light-grey;
   padding: 4%;
+  background-color: @nice-white;
 }
 .left-editor-menu {
   height: 100%;
   border-right: 1px solid @light-grey;
-  padding: 0;
-  padding-top: 1%;
+  padding: 1% 0 0;
+  background-color: @nice-white;
   &::after {
     display: table;
     clear: both;
@@ -41,7 +78,6 @@
   ul {
     margin: 0;
     padding: 0;
-    background: white;
     color: @dark-grey;
     list-style: none;
     text-transform: none;
@@ -56,8 +92,7 @@
     text-decoration: none;
     cursor: pointer;
     &:hover {
-      background: @dark-grey;
-      color: white;
+      color: @nice-white;
     }
   }
   .menu-item {
@@ -77,9 +112,27 @@
       font-weight: bold;
     }
     .save-btn {
-      background: @dark-grey;
-      color: white;
+      background: @nice-green;
+      color: @nice-white;
     }
+  }
+}
+.right-editor-menu {
+  height: 100%;
+  padding: 1% 0 0;
+  border-left: 1px solid @light-grey;
+  background-color: @nice-white;
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+  .top-spacing {
+    padding-top: 1.5em;
+    padding-bottom: 0.2em;
+  }
+  .width-100 {
+    width: 100%;
   }
 }
 .treasure-back {
@@ -91,20 +144,30 @@
 }
 #background-img {
   position: relative;
-  height: 60%;
-  width: 100%;
+  width: 50em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid @nice-grey;
+  box-sizing: content-box; // FIXME: Workaround for retrieve of treasure hunt modal width issue;
+}
+#retrieve-background {
+  width: 800px;
+  height: 45em;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.treasure-canvas-container {
+  width: 800px;
+  height: 45em;
+}
+.treasure-canvas-create-container {
+  width: 800px;
+  height: 45em;
+  position: relative;
   top: 50%;
   transform: translateY(-50%);
-}
-// FIXME: Workaround for retrieve of treasure hunt modal width issue;
-#retrieve-background {
-  width: 570px;
-  height: 342px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
 }
 .treasure-cell {
   position: absolute;
@@ -118,20 +181,37 @@
 }
 .component-item-wrapper {
   padding: 5px;
-
   .component-add {
     height: 100%;
     width: 100%;
-    border: solid 1px @dark-grey;
-
+    border: solid 3px @nice-grey;
   }
-
+}
+.component-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  widows: 100%;
+}
+.component-list-item {
+  display: inline-block;
+  margin: 10px 0 0 2%;
+  flex-grow: 1;
+  width: calc(100% * (1/3) - 10px - 1px);
+  font-weight: bold;
+  &.found {
+    text-decoration: line-through;
+  }
+}
+.component-list-item-text {
+  margin: 0;
 }
 .component-item {
   position: relative;
-  border: solid 1px @dark-grey;
+  border: solid 3px @nice-grey;
   height: 100%;
   border-radius: 3px;
+  cursor: -webkit-grab;
 }
 .component-img {
   display: block;
@@ -150,13 +230,32 @@
   transform: translate(-50%, -50%);
   left: 50%;
 }
+.component-detail-item-wrapper{
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 10%;
+}
+.component-detail-thumbnail {
+  position: relative;
+  width: 50%;
+  padding-bottom: 50%;
+  transform: translate(-50%);
+  left: 50%;
+}
+
 
 .component-add-icon {
-  color: #75ffa0;
+  color: @nice-green;
   font-size: 4em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.component-page-icon {
+  .component-add-icon;
+  position: relative;
+  color: @nice-grey;
 }
 .highlight-border {
   border: rgba(0, 0, 0, 0.5) 3px double;
@@ -176,7 +275,6 @@
   display: inline-block;
   padding: 1% 5%;
   border: 1px solid #ccc;
-  border-radius: 4px;
 }
 .inputfile:focus + label,
 .inputfile + label:hover {
@@ -189,4 +287,32 @@
 }
 .inputfile + label {
   cursor: pointer;
+}
+.component-color-0 {
+  border-color: @nice-red;
+}
+.component-color-1 {
+  border-color: @nice-peach;
+}
+.component-color-2 {
+  border-color: @nice-orange;
+}
+.component-color-3 {
+  border-color: @nice-yellow;
+}
+.menu-red:hover {
+  background-color: @nice-red;
+  color: @nice-white;
+}
+.menu-peach:hover {
+  background-color: @nice-peach;
+  color: @nice-white;
+}
+.menu-orange:hover {
+  background-color: @nice-orange;
+  color: @nice-white;
+}
+.menu-yellow:hover {
+  background-color: @nice-yellow;
+  color: @nice-white;
 }

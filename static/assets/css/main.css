@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
 .application-thumbnail {
   width: 100%;
   overflow: hidden;
@@ -26,22 +27,24 @@
   width: 100%;
   height: 100%;
   background-color: rgba(98, 98, 98, 0.8);
+  color: #F8F8F8;
   transition: all 0.5s linear;
   opacity: 0;
 }
 .application-header {
-  color: #F8F8F8;
   top: 20%;
   position: absolute;
   font-weight: bold;
   left: 0;
   right: 0;
+  padding: 0 5%;
 }
 .application-body {
   bottom: 20%;
   position: absolute;
   left: 0;
   right: 0;
+  padding: 0 5%;
 }
 .applcation-logo {
   color: #F8F8F8;
@@ -73,13 +76,40 @@
 .treasure-hunt {
   position: relative;
   width: 100%;
-  height: 50vh;
   padding: 1%;
 }
 .treasure-hunt-editor {
   position: relative;
   width: 100%;
   height: 100vh;
+  color: #626262;
+}
+.treasure-hunt-editor label {
+  display: block;
+  padding: 1.5em 0.3em 0.3em 0.2em;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.treasure-hunt-editor input,
+.treasure-hunt-editor textarea,
+.treasure-hunt-editor select {
+  line-height: 1.5;
+  font-size: 1.4em;
+  padding: 5px 10px;
+  color: #815f5f;
+  font-style: italic;
+  display: block;
+  width: 100%;
+  background: transparent;
+}
+.treasure-hunt-editor input {
+  border: 2px solid #dac6c6;
+  background-color: #F8F8F8;
+}
+.application-details label {
+  padding: 0;
 }
 .center-editor {
   height: 100%;
@@ -87,21 +117,18 @@
 }
 .app-editor {
   height: 75%;
-  padding: 0 15px;
-  border-right: solid 1px #c6d0da;
 }
 .bottom-editor-menu {
   height: 25%;
-  border: 1px solid #c6d0da;
-  border-left: 0;
-  border-bottom: 0;
+  border-top: 1px solid #dac6c6;
   padding: 4%;
+  background-color: #F8F8F8;
 }
 .left-editor-menu {
   height: 100%;
-  border-right: 1px solid #c6d0da;
-  padding: 0;
-  padding-top: 1%;
+  border-right: 1px solid #dac6c6;
+  padding: 1% 0 0;
+  background-color: #F8F8F8;
 }
 .left-editor-menu::after {
   display: table;
@@ -111,8 +138,7 @@
 .left-editor-menu ul {
   margin: 0;
   padding: 0;
-  background: white;
-  color: #5f6f81;
+  color: #815f5f;
   list-style: none;
   text-transform: none;
   font-weight: 300;
@@ -122,13 +148,12 @@
 .left-editor-menu a {
   display: block;
   height: 100%;
-  color: #5f6f81;
+  color: #815f5f;
   text-decoration: none;
   cursor: pointer;
 }
 .left-editor-menu a:hover {
-  background: #5f6f81;
-  color: white;
+  color: #F8F8F8;
 }
 .left-editor-menu .menu-item {
   display: block;
@@ -136,10 +161,10 @@
   height: 100%;
   width: 100%;
   text-align: center;
-  box-shadow: inset 0 1px #c6d0da;
+  box-shadow: inset 0 1px #dac6c6;
 }
 .left-editor-menu .menu-item:last-child {
-  border-bottom: 1px solid #c6d0da;
+  border-bottom: 1px solid #dac6c6;
 }
 .left-editor-menu .menu-item .menu-link {
   padding: 0 30px;
@@ -148,8 +173,26 @@
   font-weight: bold;
 }
 .left-editor-menu .menu-item .save-btn {
-  background: #5f6f81;
-  color: white;
+  background: #7ed7b1;
+  color: #F8F8F8;
+}
+.right-editor-menu {
+  height: 100%;
+  padding: 1% 0 0;
+  border-left: 1px solid #dac6c6;
+  background-color: #F8F8F8;
+}
+.right-editor-menu::after {
+  display: table;
+  clear: both;
+  content: '';
+}
+.right-editor-menu .top-spacing {
+  padding-top: 1.5em;
+  padding-bottom: 0.2em;
+}
+.right-editor-menu .width-100 {
+  width: 100%;
 }
 .treasure-back {
   width: 100%;
@@ -160,18 +203,30 @@
 }
 #background-img {
   position: relative;
-  height: 60%;
-  width: 100%;
+  width: 50em;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #626262;
+  box-sizing: content-box;
 }
 #retrieve-background {
-  width: 570px;
-  height: 342px;
-  position: absolute;
+  width: 800px;
+  height: 45em;
+  position: relative;
   left: 50%;
+  transform: translateX(-50%);
+}
+.treasure-canvas-container {
+  width: 800px;
+  height: 45em;
+}
+.treasure-canvas-create-container {
+  width: 800px;
+  height: 45em;
+  position: relative;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
 }
 .treasure-cell {
   position: absolute;
@@ -189,13 +244,33 @@
 .component-item-wrapper .component-add {
   height: 100%;
   width: 100%;
-  border: solid 1px #5f6f81;
+  border: solid 3px #626262;
+}
+.component-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  widows: 100%;
+}
+.component-list-item {
+  display: inline-block;
+  margin: 10px 0 0 2%;
+  flex-grow: 1;
+  width: calc(22.33333333%);
+  font-weight: bold;
+}
+.component-list-item.found {
+  text-decoration: line-through;
+}
+.component-list-item-text {
+  margin: 0;
 }
 .component-item {
   position: relative;
-  border: solid 1px #5f6f81;
+  border: solid 3px #626262;
   height: 100%;
   border-radius: 3px;
+  cursor: -webkit-grab;
 }
 .component-img {
   display: block;
@@ -214,12 +289,34 @@
   transform: translate(-50%, -50%);
   left: 50%;
 }
+.component-detail-item-wrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 10%;
+}
+.component-detail-thumbnail {
+  position: relative;
+  width: 50%;
+  padding-bottom: 50%;
+  transform: translate(-50%);
+  left: 50%;
+}
 .component-add-icon {
-  color: #75ffa0;
+  color: #7ed7b1;
   font-size: 4em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.component-page-icon {
+  color: #7ed7b1;
+  font-size: 4em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  color: #626262;
 }
 .highlight-border {
   border: rgba(0, 0, 0, 0.5) 3px double;
@@ -235,15 +332,14 @@
 .inputfile + label {
   font-size: 1.25em;
   font-weight: 700;
-  color: #5f6f81;
+  color: #815f5f;
   display: inline-block;
   padding: 1% 5%;
   border: 1px solid #ccc;
-  border-radius: 4px;
 }
 .inputfile:focus + label,
 .inputfile + label:hover {
-  background-color: #5f6f81;
+  background-color: #815f5f;
   color: white;
 }
 .inputfile:focus + label {
@@ -253,11 +349,68 @@
 .inputfile + label {
   cursor: pointer;
 }
+.component-color-0 {
+  border-color: #E47F7C;
+}
+.component-color-1 {
+  border-color: #DB917E;
+}
+.component-color-2 {
+  border-color: #ECB685;
+}
+.component-color-3 {
+  border-color: #E7CE8E;
+}
+.menu-red:hover {
+  background-color: #E47F7C;
+  color: #F8F8F8;
+}
+.menu-peach:hover {
+  background-color: #DB917E;
+  color: #F8F8F8;
+}
+.menu-orange:hover {
+  background-color: #ECB685;
+  color: #F8F8F8;
+}
+.menu-yellow:hover {
+  background-color: #E7CE8E;
+  color: #F8F8F8;
+}
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
 body {
   background-color: #e7e7e7;
+  line-height: 1.5;
   font-family: 'Lato', sans-serif;
+}
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.17em;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 0.83em;
+}
+h6 {
+  font-size: 0.75em;
+}
+p {
+  line-height: 1.5;
+  margin: 0 0 1em;
+}
+a,
+a:visited,
+a:hover,
+a:focus {
+  text-decoration: none;
 }
 .test2 {
   float: right;
@@ -271,23 +424,23 @@ body {
   border-left-color: #f4ae10;
 }
 .btn-success {
-  background-color: #8bcf9a;
-  border-color: #8bcf9a;
+  background-color: #7ed7b1;
+  border-color: #7ed7b1;
   color: #F8F8F8;
 }
 .btn-primary {
-  background-color: #80C5B9;
-  border-color: #80C5B9;
+  background-color: #79AFE0;
+  border-color: #79AFE0;
   color: #F8F8F8;
 }
 .btn-danger {
-  background-color: #D3455B;
-  border-color: #D3455B;
+  background-color: #E47F7C;
+  border-color: #E47F7C;
   color: #F8F8F8;
 }
 .btn-warning {
-  background-color: #EFC557;
-  border-color: #EFC557;
+  background-color: #E7CE8E;
+  border-color: #E7CE8E;
   color: #F8F8F8;
 }
 .btn-anchor {
@@ -295,6 +448,36 @@ body {
 }
 .navbar-default .navbar-nav > li > a {
   color: #626262 !important;
+}
+.modal-content {
+  background-color: #e7e7e7;
+}
+.modal.app .modal-dialog {
+  width: 75%;
+  height: 90%;
+}
+.modal.app .modal-content {
+  widows: 100%;
+  height: 100%;
+}
+.edit-in-place span {
+  cursor: pointer;
+}
+.edit-in-place input {
+  display: none;
+}
+.edit-in-place.active span {
+  display: none;
+}
+.edit-in-place.active input {
+  display: inline-block;
+}
+.accordion-body {
+  display: none;
+  transition: all 0.5s;
+}
+.accordion-body.active {
+  display: block;
 }
 
 .contact-title h1 {

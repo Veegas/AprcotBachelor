@@ -53,5 +53,15 @@
                 });
             })();
         };
+
+        $rootScope.safeApply = function(fn) {
+          var phase = this.$root.$$phase;
+          if (phase === '$apply' || phase === '$digest') {
+            this.$eval(fn);
+          }
+          else {
+            this.$apply(fn);
+          }
+        };
     });
 })();

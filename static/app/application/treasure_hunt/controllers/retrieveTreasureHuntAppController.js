@@ -63,7 +63,50 @@
           "width": 35
         },
         "angle": 0
-      }];
+      },
+      {
+        "id": 5,
+        "name": "Black Bottle 2",
+        "img": "/static/media/applications/treasurehunt/bottle3.png",
+        "position": {
+          "x": 35,
+          "y": 10
+        },
+        "size": {
+          "height": 50,
+          "width": 35
+        },
+        "angle": 0
+      },
+      {
+        "id": 5,
+        "name": "Black Bottle 2",
+        "img": "/static/media/applications/treasurehunt/bottle3.png",
+        "position": {
+          "x": 35,
+          "y": 10
+        },
+        "size": {
+          "height": 50,
+          "width": 35
+        },
+        "angle": 0
+      },
+      {
+        "id": 5,
+        "name": "Black Bottle 2",
+        "img": "/static/media/applications/treasurehunt/bottle3.png",
+        "position": {
+          "x": 35,
+          "y": 10
+        },
+        "size": {
+          "height": 50,
+          "width": 35
+        },
+        "angle": 0
+      },
+    ];
 
       treasureHuntAppService.pushComponents($scope.components);
     }
@@ -74,8 +117,8 @@
           treasureHuntAppService.pushComponents($scope.components);
       }
         $scope.settings = settings;
-        // getServerSettings();
-        customizedDefaultSettings();
+        getServerSettings();
+        // customizedDefaultSettings();
 
     $scope.backgroundStyle = {
       "background-size": 'cover',

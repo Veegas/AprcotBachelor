@@ -36,10 +36,13 @@
 
             //create Modal object using state
             createModalFromState: function(state, resolve) {
+                var name = state.name.split(".")[0];
                 return $modal.open({
                     controller: state.views['content@'].controller,
                     templateUrl: state.views['content@'].templateUrl,
                     resolve: resolve,
+                    size: 'lg',
+                    windowClass: name,
                     backdrop: 'static'
                 });
             },

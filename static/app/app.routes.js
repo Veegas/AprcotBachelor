@@ -173,7 +173,8 @@
                     'full-screen@': {
                         controller: 'createTreasureHuntAppController',
                         templateUrl: APPS_DIR + 'treasure_hunt/views/createTreasureHuntAppView.html'
-                    }
+                    },
+                    
                 }
             });
 
