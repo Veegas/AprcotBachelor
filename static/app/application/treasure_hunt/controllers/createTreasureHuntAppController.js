@@ -138,10 +138,8 @@
         }, true);
 
         $scope.components = _.without($scope.components, found[0]);
+        $scope.confirmComponent();
         treasureHuntAppService.pushComponents($scope.components);
-        $rootScope.apply();
-
-        console.log("components to be deleted: ", found);
         console.log("components deleted: ", $scope.components);
 
       };

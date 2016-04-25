@@ -89,6 +89,7 @@
           },
           function(components) {
             $scope.components = components;
+            console.log("SERVICE COMPONETNS CHANGED DRAW: ", components);
             drawComponents(canvas, $scope.components);
           },
           true
@@ -98,7 +99,7 @@
           var activeObject = e.target;
           var activeComponent = activeObject.component;
           var found = $filter('filter')($scope.components, {
-            id: activeComponent.id
+            $$hashKey: activeComponent.$$hashKey
           }, true)[0];
           found.position.x = pixelsToPercentage(activeObject.left, canvas.getWidth());
           found.position.y = pixelsToPercentage(activeObject.top, canvas.getHeight());

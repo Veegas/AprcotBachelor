@@ -1,19 +1,18 @@
 (function() {
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.services');
-  applicationModule.factory('treasureHuntAppService', function($rootScope) {
+  applicationModule.factory('treasureHuntAppService', function() {
       var components = [];
       var activeComponent = null;
       return {
         pushComponents: function pushComponents(toBePushed) {
-          var oldComponents = components;
           var diffComponents = _.difference(toBePushed, components);
-          components = components.concat(diffComponents);
-          $rootScope.$broadcast("component-added", {
-            oldComponents: oldComponents,
-            diffComponents: diffComponents,
-            newComponents: components
+          console.log("SERVICE COMPONENTS: ", {
+            toBePushed: toBePushed,
+            components: components,
+            diffComponents: diffComponents
           });
+          components = toBePushed;
         },
         getComponents: function getComponents() {
           return components;
