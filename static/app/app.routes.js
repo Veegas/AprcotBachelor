@@ -31,7 +31,7 @@
             .state('index.home', {
                 url: '/home',
                 views: {
-                    'content@': {
+                    'full-screen@': {
                         controller: 'homeController',
                         templateUrl: '/static/app/home/homeView.html'
                     }
@@ -174,7 +174,7 @@
                         controller: 'createTreasureHuntAppController',
                         templateUrl: APPS_DIR + 'treasure_hunt/views/createTreasureHuntAppView.html'
                     },
-                    
+
                 }
             });
 

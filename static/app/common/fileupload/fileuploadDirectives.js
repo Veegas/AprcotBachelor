@@ -10,7 +10,6 @@
       },
       link: function link(scope, element, attrs, ctrl) {
         function onChange() {
-          console.log("FILE UPLOAD DIRECTIVE ON CHANGE");
           ctrl.$setViewValue(element[0].files[0]);
           scope.fileChange();
         }

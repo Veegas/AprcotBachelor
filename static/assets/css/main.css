@@ -428,6 +428,9 @@ a:hover,
 a:focus {
   text-decoration: none;
 }
+#main {
+  padding-top: 20px;
+}
 .test2 {
   float: right;
   color: red;
@@ -510,6 +513,18 @@ a:focus {
 }
 .jumbotron {
   text-align: center;
+}
+.home-background {
+  background-image: url("/static/media/squaresBackground.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  padding-top: 70px;
 }
 .aprcot-title {
   color: #f4ae10;
