@@ -1,10 +1,10 @@
-/*globals fabric */
+/*globals fabric, alert */
 
 (function() {
   'use strict';
   var applicationModule = angular.module('aprcotApp.application.directives');
 
-  applicationModule.directive('treasureHuntDirective', function($timeout, $rootScope, treasureHuntAppService, $filter) {
+  applicationModule.directive('treasureHuntDirective', function($rootScope, treasureHuntAppService, $filter) {
 
 
     function link($scope, element, attrs) {
@@ -15,9 +15,23 @@
         editor = true;
       }
 
-      $scope.$watch('components', function (components) {
+      $scope.$watch('components', function(components) {
         treasureHuntAppService.pushComponents(components);
       }, true);
+
+
+      function canvasInit() {
+        var canvas = new fabric.Canvas(attrs.id, {
+          width: element.parent().width(),
+          height: element.parent().height(),
+        });
+        $scope.canvas = canvas;
+        if (editor) {
+          treasureHuntEditorHandlers(canvas);
+        } else {
+          treasureHuntPlayableHandlers(canvas);
+        }
+      }
 
       $(document).ready(function() {
         canvasInit();
@@ -111,7 +125,7 @@
 
         });
 
-        canvas.on('object:selected', function (e) {
+        canvas.on('object:selected', function(e) {
           $scope.activeComponent = e.target.component;
           treasureHuntAppService.pushActiveComponent(e.target.component);
           $rootScope.safeApply();
@@ -150,20 +164,6 @@
         $scope.$on("treasurehunt-ended", function() {
           alert("You've won");
         });
-      }
-
-
-      function canvasInit() {
-        var canvas = new fabric.Canvas(attrs.id, {
-          width: element.parent().width(),
-          height: element.parent().height(),
-        });
-        $scope.canvas = canvas;
-        if (editor) {
-          treasureHuntEditorHandlers(canvas);
-        } else {
-          treasureHuntPlayableHandlers(canvas);
-        }
       }
     }
 
