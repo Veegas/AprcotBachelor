@@ -7,7 +7,6 @@
   applicationModule.directive('treasureHuntDirective', function($timeout, $rootScope, treasureHuntAppService, $filter) {
 
 
-
     function link($scope, element, attrs) {
       var editor;
       if (attrs.editor === "false") {
@@ -20,19 +19,10 @@
         treasureHuntAppService.pushComponents(components);
       }, true);
 
+      $(document).ready(function() {
+        canvasInit();
+      });
 
-      function canvasInit() {
-        var canvas = new fabric.Canvas(attrs.id, {
-          width: element.parent().width(),
-          height: element.parent().height(),
-        });
-        $scope.canvas = canvas;
-        if (editor) {
-          treasureHuntEditorHandlers(canvas);
-        } else {
-          treasureHuntPlayableHandlers(canvas);
-        }
-      }
 
       function setCanvasBackground(canvas, backgroundImage) {
         canvas.setBackgroundImage(backgroundImage, canvas.renderAll.bind(canvas), {
@@ -47,8 +37,6 @@
       function addComponentToCanvas(canvas, component) {
         var img = new Image(); // Create new img element
         img.src = component.img;
-
-
         var imgLeftPixels = Math.floor((canvas.width * component.position.x) / 100);
         var imgTopPixels = Math.floor((canvas.height * component.position.y) / 100);
         img.onload = function() {
@@ -66,11 +54,23 @@
         };
       }
 
+
       function drawComponents(canvas, components) {
         canvas.clear();
         components.forEach(function(component) {
           addComponentToCanvas(canvas, component);
         });
+      }
+
+
+      function pixelsToPercentage(pixels, total) {
+        var percent = (pixels / total) * 100;
+        return Math.floor(percent);
+      }
+
+
+      function scaleToOriginal(original, scale) {
+        return Math.floor(original * scale);
       }
 
 
@@ -120,15 +120,6 @@
       }
 
 
-      function pixelsToPercentage(pixels, total) {
-        var percent = (pixels / total) * 100;
-        return Math.floor(percent);
-      }
-
-      function scaleToOriginal(original, scale) {
-        return Math.floor(original * scale);
-      }
-
       function treasureHuntPlayableHandlers(canvas) {
         $scope.$watch(
           function() {
@@ -140,7 +131,6 @@
           },
           true
         );
-
 
         canvas.on('mouse:down', function(options) {
           if (!_.isUndefined(options.target)) {
@@ -157,23 +147,24 @@
           }
           $rootScope.safeApply();
         });
-
         $scope.$on("treasurehunt-ended", function() {
           alert("You've won");
         });
       }
 
 
-      // $timeout(function(){
-      //   canvasInit();
-      // });
-
-      $(document).ready(function() {
-        canvasInit();
-      });
-
-
-
+      function canvasInit() {
+        var canvas = new fabric.Canvas(attrs.id, {
+          width: element.parent().width(),
+          height: element.parent().height(),
+        });
+        $scope.canvas = canvas;
+        if (editor) {
+          treasureHuntEditorHandlers(canvas);
+        } else {
+          treasureHuntPlayableHandlers(canvas);
+        }
+      }
     }
 
     return {
