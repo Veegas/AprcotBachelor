@@ -1,27 +1,78 @@
+@nice-grey: rgba(98, 98, 98, 0.8);
+@nice-green: #7ed7b1;
+@nice-red: #E47F7C;
+@nice-peach: #DB917E;
+@nice-blue: #79AFE0;
+@nice-yellow: #E7CE8E;
+@nice-dark-brown: #4D4943;
+@nice-orange: #ECB685;
+@nice-teal: #7DCAD8;
+@nice-white: #F8F8F8;
+@nice-cream: #e7e7e7;
+
 .test {
   float: right;
 }
 .jumbotron {
   text-align: center;
 }
+.home-section {
+  width: 100%;
+  min-height: 40vh;
+  padding: 30px 15px;
+  background-color: @nice-grey;
+  color: @nice-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 35px;
+  margin-top: 15px
+
+}
+
 .home-background {
-  background-image: url("/static/media/squaresBackground.svg");
+  // background-image: url("/static/media/squaresBackground.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  padding-top: 70px;
 }
-.aprcot-title {
-  color: #f4ae10;
-}
-.subtitle {
-  color: #337ab7;
-}
-.btn-lg fb-lgn-btn {
+.btn-lg.fb-lgn-btn {
   text-align: center;
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.home-instruction {
+  background-color: @nice-white;
+  padding: 1.5em;
+  min-height: 40vh;
+}
+.home-instruction-text {
+  color: @nice-grey;
+  font-weight: 300;
+}
+.home-instruction-text h2 {
+  line-height: 1.2em;
+}
+
+.home-instruction-icon {
+  font-size: 15em;
+  text-align: center;
+  width: 100%;
+}
+.color-red {
+  color: @nice-red;
+}
+.color-orange {
+  color: @nice-orange;
+}
+
+.color-green {
+  color: @nice-green;
+}
+.color-yellow {
+  color: @nice-yellow;
+}
+.color-blue {
+  color: @nice-blue;
 }

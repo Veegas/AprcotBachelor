@@ -1,20 +1,61 @@
 <div class="home-background">
-  <div class="container">
 
-  <div class="jumbotron">
+  <div class="text-center home-section">
     <h1>Welcome to
       <span class="aprcot-title">APRCOT!</span>
     </h1>
-    <h3 class="subtitle">Social Media Applications Leaders
+    <h3 class="lead">Social Media Applications Leaders
     </h3>
-    <p class="lead">
+    <h2 class="lead">
       Simple & Elegant
     </p>
-  </div>
-  <div>
-    <button ng-click='login()' type="Login" class="btn btn-primary btn-lg fb-lgn-btn" ng-if="!isLoggedIn">
+    <button ng-click='login()' type="Login" class="btn btn-primary btn-lg fb-lgn-btn"  ng-if="!isLoggedIn">
+      <span class="fa fa-facebook-official"></span>
       Login with Facebook
     </button>
+    <a ui-sref="index.application"class="btn btn-warning btn-lg fb-lgn-btn"  ng-if="isLoggedIn">
+      <span class="fa fa-th-large"></span>
+      View Applications
+    </a>
   </div>
-</div>
+
+  <div class="container">
+    <div class="text-center">
+      <div class="col-md-12">
+        <div class="container">
+          <div class="col-md-4 color-orange">
+            <div class="home-instruction">
+              <div class="fa home-instruction-icon fa-sign-in"></div>
+              <div class="home-instruction-text">
+                <h2>
+                  <b> Login </b> using your Facebook account that is the admin of your Page.
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 color-blue">
+            <div class="home-instruction">
+              <div class="fa home-instruction-icon fa-th-large"></div>
+              <div class="home-instruction-text">
+                <h2>
+                  <b>Choose</b> the application you wish to create, <b> Customize </b> the application as you wish to fit you brand.
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 color-green">
+            <div class="home-instruction">
+              <div class="fa home-instruction-icon fa-briefcase"></div>
+              <div class="home-instruction-text">
+                <h2>
+                  <b>Create </b> your a campaign and attach it to your awesome page, then watch your users interact.
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
