@@ -1,22 +1,24 @@
 <div class="home-background">
 
   <div class="text-center home-section">
-    <h1>Welcome to
-      <span class="aprcot-title">APRCOT!</span>
-    </h1>
-    <h3 class="lead">Social Media Applications Leaders
-    </h3>
-    <h2 class="lead">
-      Simple & Elegant
-    </p>
-    <button ng-click='login()' type="Login" class="btn btn-primary btn-lg fb-lgn-btn"  ng-if="!isLoggedIn">
-      <span class="fa fa-facebook-official"></span>
-      Login with Facebook
-    </button>
-    <a ui-sref="index.application"class="btn btn-warning btn-lg fb-lgn-btn"  ng-if="isLoggedIn">
-      <span class="fa fa-th-large"></span>
-      View Applications
-    </a>
+    <div class="home-section-text">
+      <h1>Welcome to
+        <span class="aprcot-title">APRCOT!</span>
+      </h1>
+      <h3 class="lead">Social Media Applications Leaders
+      </h3>
+      <h2 class="lead">
+        Simple & Elegant
+      </p>
+      <button ng-click='login()' type="Login" class="btn btn-primary btn-lg fb-lgn-btn"  ng-if="!isLoggedIn">
+        <span class="fa fa-facebook-official"></span>
+        Login with Facebook
+      </button>
+      <a ui-sref="index.application"class="btn btn-danger btn-lg fb-lgn-btn"  ng-if="isLoggedIn">
+        <span class="fa fa-th-large"></span>
+        View Applications
+      </a>
+    </div>
   </div>
 
   <div class="container">
