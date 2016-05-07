@@ -30,7 +30,13 @@
 
     console.log("$scope.applications: ", $scope.applications);
 
+    $scope.appAvailable = function (applicationId) {
+      if (applicationId == "1" || applicationId == "22") {
+        return true;
+      }
 
+        return false;
+    };
 
     $scope.showDemo = function(applicationId) {
       CampaignUtils.viewDemo(applicationId);

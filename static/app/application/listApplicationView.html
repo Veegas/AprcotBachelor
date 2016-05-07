@@ -13,10 +13,15 @@
             <h3>
               {{app.description}}
             </h3>
-            <p>
+            <p ng-if="appAvailable(app.id)">
               <button class="btn btn-lg btn-primary" ng-click="showDemo(app.id, app.identifier)" role="button">Demo</button>
               <button class="btn btn-lg btn-success" ng-click="createCampaign(app.id, app.identifier, {})" ng-if="isLoggedIn" role="button">Create</button>
             </p>
+          </div>
+        </div>
+        <div class="application-soon" ng-if="!appAvailable(app.id)">
+          <div class="application-soon-text text-center">
+            <h1> Coming Soon </h1>
           </div>
         </div>
       </div>
